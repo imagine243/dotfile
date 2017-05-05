@@ -41,6 +41,9 @@ nnoremap k gk
 " esc jk
 inoremap jk <esc>
 
+" leader key space
+let mapleader=" "
+
 
 """ vundle  
 """"""""""""""""""""""""""""""""
@@ -61,6 +64,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 " nerdtree
 Plugin 'scrooloose/nerdtree'
+" Valloric/YouCompleteMe
+Plugin 'Valloric/YouCompleteMe'
+" vim-easymotion  move plugin
+Plugin 'easymotion/vim-easymotion'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
