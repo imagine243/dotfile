@@ -42,7 +42,7 @@ nnoremap k gk
 inoremap jk <esc>
 
 " leader key space
-let mapleader=" "
+"let mapleader=" "
 
 
 """ vundle  
