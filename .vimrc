@@ -42,7 +42,7 @@ nnoremap k gk
 inoremap jk <esc>
 
 " leader key space
-"let mapleader=" "
+let mapleader=" "
 
 if executable('ag')
   " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
@@ -75,7 +75,7 @@ Plugin 'kien/ctrlp.vim'
 " nerdtree
 Plugin 'scrooloose/nerdtree'
 " Valloric/YouCompleteMe
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 " vim-easymotion  move plugin
 Plugin 'easymotion/vim-easymotion'
 
