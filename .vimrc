@@ -75,7 +75,7 @@ Plugin 'kien/ctrlp.vim'
 " nerdtree
 Plugin 'scrooloose/nerdtree'
 " Valloric/YouCompleteMe
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 " vim-easymotion  move plugin
 Plugin 'easymotion/vim-easymotion'
 
