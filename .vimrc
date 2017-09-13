@@ -11,6 +11,9 @@ set tabstop=4
 set softtabstop=4
 " 使用space 替代 tab
 set expandtab
+
+"encoding
+set encoding=utf-8
  
 " ui config
 " show line number
