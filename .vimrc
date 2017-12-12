@@ -45,7 +45,7 @@ nnoremap k gk
 inoremap jk <esc>
 
 " leader key space
-let mapleader=" "
+let mapleader="\<space>"
 
 if executable('ag')
   " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
