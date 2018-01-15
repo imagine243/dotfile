@@ -11,6 +11,9 @@ set tabstop=4
 set softtabstop=4
 " 使用space 替代 tab
 "set expandtab
+
+"encoding
+set encoding=utf-8
  
 " ui config
 " show line number
@@ -42,7 +45,7 @@ nnoremap k gk
 inoremap jk <esc>
 
 " leader key space
-let mapleader=" "
+let mapleader="\<space>"
 
 " MacOSX/Linux
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
@@ -92,7 +95,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 " nerdtree
 Plugin 'scrooloose/nerdtree'
 " Valloric/YouCompleteMe
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 " vim-easymotion  move plugin
 Plugin 'easymotion/vim-easymotion'
 
