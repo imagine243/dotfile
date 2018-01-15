@@ -10,7 +10,7 @@ set tabstop=4
 " 点击tab 输入的 space数量 点击删除 删除的space数量
 set softtabstop=4
 " 使用space 替代 tab
-set expandtab
+"set expandtab
  
 " ui config
 " show line number
@@ -44,6 +44,10 @@ inoremap jk <esc>
 " leader key space
 let mapleader=" "
 
+" MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
+
+""" ctrlp setting https://github.com/ctrlpvim/ctrlp.vim
 if executable('ag')
   " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
   set grepprg=ag\ --nogroup\ --nocolor
@@ -54,6 +58,19 @@ else
   "ctrl+p ignore files in .gitignore
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 endif
+
+" When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable
+let g:ctrlp_working_path_mode = 'ra'
+
+" If none of the default markers (.git .hg .svn .bzr _darcs) are present in a project, you can define additional ones with g:ctrlp_root_markers:
+let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
+
+" Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore. If a custom listing command is being used, exclusions are ignored
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
 
 """ vundle  
 """"""""""""""""""""""""""""""""
@@ -71,7 +88,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " my plugin
 " ctrlp
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 " nerdtree
 Plugin 'scrooloose/nerdtree'
 " Valloric/YouCompleteMe
@@ -95,6 +112,8 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
+
+Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
