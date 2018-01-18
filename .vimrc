@@ -41,6 +41,10 @@ set hlsearch
 nnoremap j gj
 nnoremap k gk
 
+" 去掉Scrollbar
+set guioptions-=r
+set guioptions-=L
+
 " esc jk
 inoremap jk <esc>
 
@@ -75,6 +79,32 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+" YouCompleteMe config 参考了知乎韦易笑
+"作者：韦易笑
+"链接：https://zhuanlan.zhihu.com/p/33046090
+"来源：知乎
+"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+" 屏蔽ycm自动弹出的函数原型预览窗口
+set completeopt=menu,menuone
+let g:ycm_add_preview_to_completeopt = 0
+" 屏蔽ycm的诊断信息
+"jlet g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+" 基于符号的补全，  输入两个字符后就提示补全
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+" 使用ctrl-z 显示语义的补全提示
+let g:ycm_key_invoke_completion = '<c-z>'
+
+noremap <c-z> <NOP>
+"  输入两个字符就开始语义的自动补全
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript': ['re!\w{2}'],
+			\ }
+
 """ vundle  
 """"""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
@@ -96,6 +126,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 " Valloric/YouCompleteMe
 Plugin 'Valloric/YouCompleteMe'
+
 " vim-easymotion  move plugin
 Plugin 'easymotion/vim-easymotion'
 
@@ -119,6 +150,8 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 Plugin 'fatih/vim-go'
+
+Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
