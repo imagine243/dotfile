@@ -54,6 +54,25 @@ let mapleader="\<space>"
 " MacOSX/Linux
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
 
+
+
+""" vundle  
+""""""""""""""""""""""""""""""""
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" my plugin
+" ctrlp
+Plugin 'ctrlpvim/ctrlp.vim'
 """ ctrlp setting https://github.com/ctrlpvim/ctrlp.vim
 if executable('ag')
   " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
@@ -79,6 +98,11 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+" nerdtree
+Plugin 'scrooloose/nerdtree'
+
+" Valloric/YouCompleteMe
+Plugin 'Valloric/YouCompleteMe'
 " YouCompleteMe config 参考了知乎韦易笑
 "作者：韦易笑
 "链接：https://zhuanlan.zhihu.com/p/33046090
@@ -104,28 +128,6 @@ let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
-
-""" vundle  
-""""""""""""""""""""""""""""""""
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" my plugin
-" ctrlp
-Plugin 'ctrlpvim/ctrlp.vim'
-" nerdtree
-Plugin 'scrooloose/nerdtree'
-" Valloric/YouCompleteMe
-Plugin 'Valloric/YouCompleteMe'
 
 " vim-easymotion  move plugin
 Plugin 'easymotion/vim-easymotion'
