@@ -1,7 +1,7 @@
 " color
 " colorscheme 
 color slate
-"syntax enable
+" syntax enable
 syntax enable
 
 " tab & space
@@ -9,10 +9,12 @@ syntax enable
 set tabstop=4
 " 点击tab 输入的 space数量 点击删除 删除的space数量
 set softtabstop=4
+" 自动换行
+set autoindent
 " 使用space 替代 tab 禁用 会影响space当作leader key
-"set expandtab
+" set expandtab
 
-"encoding
+" encoding
 set encoding=utf-8
  
 " ui config
@@ -144,12 +146,6 @@ Plugin 'tpope/vim-fugitive'
 "Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 " Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
 
 Plugin 'fatih/vim-go'
 
