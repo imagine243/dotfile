@@ -88,7 +88,7 @@ else
 endif
 
 " When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'r'
 
 " If none of the default markers (.git .hg .svn .bzr _darcs) are present in a project, you can define additional ones with g:ctrlp_root_markers:
 let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
