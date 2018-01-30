@@ -56,6 +56,9 @@ let mapleader="\<space>"
 " MacOSX/Linux
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
 
+" switch buffers
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
 
 
 """ vundle  
@@ -148,6 +151,20 @@ Plugin 'tpope/vim-fugitive'
 " Plugin 'file:///home/gmarik/path/to/plugin'
 
 Plugin 'fatih/vim-go'
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>i <Plug>(go-install)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>tf <Plug>(go-test)
+au FileType go nmap <leader>im <Plug>(go-imports)
+au FileType go nmap <leader>l <Plug>(go-lint)
+au FileType go nmap <leader>d <Plug>(go-def)
+au FileType go nmap <leader>ds <Plug>(go-def-split)
+au FileType go nmap <leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <leader>dt <Plug>(go-def-tab)
+au FileType go nmap <leader>re <Plug>(go-referrers)
+
 
 " NERD Commenter Comment functions so powerful—no comment necessary.
 Plugin 'scrooloose/nerdcommenter'
