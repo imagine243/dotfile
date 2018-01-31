@@ -29,7 +29,7 @@ set wildmenu
 " redraw only when we need to 
 set lazyredraw
 " highlight matching [{()}]
-set showmatch
+" set showmatch
 
 " search
 " search as characters are entered
@@ -184,6 +184,32 @@ let g:NERDTrimTrailingWhitespace = 1
 Plugin 'majutsushi/tagbar'
 
 nmap <F8> :TagbarToggle<CR>
+
+" Auto Pairs
+" Insert or delete brackets, parens, quotes in pair.
+Plugin 'jiangmiao/auto-pairs'
+
+" vim-airline Build Status
+" Lean & mean status/tabline for vim that's light as air.
+Plugin 'bling/vim-airline'
+
+" vim-gitgutter
+" A Vim plugin which shows a git diff in the 'gutter' (sign column). It shows whether each line has been added, modified, and where lines have been removed. You can also stage and undo individual hunks.
+Plugin 'airblade/vim-gitgutter'
+
+" Vim Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+" ack.vim
+" Run your favorite search tool from Vim, with an enhanced results list.
+Plugin 'mileszs/ack.vim'
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+cnoreabbrev Ack Ack!
+" nnoremap <Leader>a :Ack!<Space>
+vnoremap <Leader>a y:Ack!<Space> <C-r>=fnameescape(@")<CR><CR>
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
