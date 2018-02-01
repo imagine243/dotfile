@@ -59,6 +59,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 " switch buffers
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
+" Search for visually selected text use key //
+vnoremap // y/<C-R>"<CR>
 
 
 """ vundle  
@@ -210,6 +212,10 @@ endif
 cnoreabbrev Ack Ack!
 " nnoremap <Leader>a :Ack!<Space>
 vnoremap <Leader>a y:Ack!<Space> <C-r>=fnameescape(@")<CR><CR>
+
+" vim-startify This
+" plugin provides a start screen for Vim and Neovim.
+Plugin 'mhinz/vim-startify'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
