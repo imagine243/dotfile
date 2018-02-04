@@ -56,6 +56,9 @@ inoremap jk <esc>
 " leader key space
 let mapleader="\<space>"
 
+" no swap file
+set noswapfile
+
 " MacOSX/Linux
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
 
