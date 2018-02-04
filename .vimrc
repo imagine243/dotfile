@@ -31,6 +31,9 @@ set lazyredraw
 " highlight matching [{()}]
 " set showmatch
 
+" foldlevel
+set foldlevel=99
+
 " search
 " search as characters are entered
 set incsearch
@@ -93,7 +96,7 @@ else
 endif
 
 " When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable
-let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_working_path_mode = ''
 
 " If none of the default markers (.git .hg .svn .bzr _darcs) are present in a project, you can define additional ones with g:ctrlp_root_markers:
 let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
@@ -107,6 +110,7 @@ let g:ctrlp_custom_ignore = {
 
 " nerdtree
 Plugin 'scrooloose/nerdtree'
+map <F9> :NERDTreeToggle<CR>
 
 " Valloric/YouCompleteMe
 Plugin 'Valloric/YouCompleteMe'
