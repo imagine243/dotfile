@@ -115,6 +115,10 @@ let g:ctrlp_custom_ignore = {
 Plugin 'scrooloose/nerdtree'
 map <F9> :NERDTreeToggle<CR>
 
+" nerdtree-git-plugin
+" A plugin of NERDTree showing git status flags. Works with the LATEST version of NERDTree
+Plugin 'xuyuanp/nerdtree-git-plugin'
+
 " Valloric/YouCompleteMe
 Plugin 'Valloric/YouCompleteMe'
 " YouCompleteMe config 参考了知乎韦易笑
