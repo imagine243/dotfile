@@ -96,9 +96,10 @@ set autoindent					" 自动换行
 " visual autocomplete for command menu
 set wildmenu
 
-" 去掉Scrollbar
-set guioptions-=r
-set guioptions-=L
+set guioptions-=m				"remove menu bar
+set guioptions-=T				"remove toolbar
+set guioptions-=r				"remove right-hand scroll bar
+set guioptions-=L				"remove left-hand scroll bar
 
 " foldlevel
 set foldlevel=99
