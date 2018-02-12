@@ -30,6 +30,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'mileszs/ack.vim'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'SirVer/ultisnips'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -122,6 +124,8 @@ endif
 """"""""""""""""""""""
 "      mapping        "
 """""""""""""""""""""""
+" leader key space
+let mapleader="\<space>"
 " 一行过长 会自动换行 , j k 会移动到 自动换行出来的第二行
 noremap <Up> gk
 noremap <Down> gj
@@ -129,8 +133,6 @@ nnoremap j gj
 nnoremap k gk
 " esc jk
 inoremap jk <esc>
-" leader key space
-let mapleader="\<space>"
 
 nnoremap <leader>q :q<CR>
 
@@ -145,6 +147,12 @@ vnoremap // y/<C-R>"<CR>
 nnoremap Y y$
 " Enter automatically into the files directory
 " autocmd BufEnter * silent! lcd %:p:h
+
+" Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
+" quickfix window with <leader>a
+nnoremap <leader>n :cnext<CR>
+nnoremap <leader>m :cprevious<CR>
+nnoremap <leader>c :cclose<CR>
 
 """""""""""""""""""""""""""""
 "    plugin setting			"					
@@ -198,11 +206,6 @@ let g:ycm_semantic_triggers =  {
 			\ }
 
 " Plugin 'fatih/vim-go'
-" au FileType go nmap <leader>d <Plug>(go-def)
-" au FileType go nmap <leader>ds <Plug>(go-def-split)
-" au FileType go nmap <leader>dv <Plug>(go-def-vertical)
-" au FileType go nmap <leader>dt <Plug>(go-def-tab)
-" au FileType go nmap <leader>re <Plug>(go-referrers)
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
