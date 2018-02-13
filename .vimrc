@@ -151,9 +151,9 @@ nnoremap Y y$
 
 " Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
 " quickfix window with <leader>a
-nnoremap <leader>n :cnext<CR>
-nnoremap <leader>m :cprevious<CR>
-nnoremap <leader>c :cclose<CR>
+nnoremap <leader>cn :cnext<CR>
+nnoremap <leader>cm :cprevious<CR>
+nnoremap <leader>cc :cclose<CR>
 
 """""""""""""""""""""""""""""
 "    plugin setting			"					
