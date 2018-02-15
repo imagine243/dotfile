@@ -95,7 +95,7 @@ set softtabstop=4				" 点击tab 输入的 space数量 点击删除 删除的spa
 set autoindent					" 自动换行
 " set expandtab					" 使用space 替代 tab 禁用 会影响space当作leader key
 
- 
+
 " visual autocomplete for command menu
 set wildmenu
 
@@ -108,7 +108,7 @@ set guioptions-=L				"remove left-hand scroll bar
 set foldlevel=99
 
 " MacOSX/Linux
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 " Enable to copy to clipboard for operations like yank, delete, change and put
 " http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
