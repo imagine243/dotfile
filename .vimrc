@@ -32,6 +32,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'mileszs/ack.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'SirVer/ultisnips'
+Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -134,6 +135,11 @@ nnoremap j gj
 nnoremap k gk
 " esc jk
 inoremap jk <esc>
+
+inoremap <C-p> <up>
+inoremap <C-n> <down>
+inoremap <C-b> <left>
+inoremap <C-f> <right>
 
 nnoremap <leader>q :q<CR>
 
@@ -294,3 +300,14 @@ endif
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 vnoremap <Leader>a y:Ack!<Space> <C-r>=fnameescape(@")<CR><CR>
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_go_checkers = ['go','gofmt','govet']
