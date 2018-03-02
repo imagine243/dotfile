@@ -214,7 +214,6 @@ let g:ycm_semantic_triggers =  {
 
 " Plugin 'fatih/vim-go'
 let g:go_fmt_command = "goimports"
-let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
 let g:go_auto_sameids = 1
 
