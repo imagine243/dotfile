@@ -61,8 +61,10 @@ let g:rehash256 = 1
 colorscheme molokai
 
 set ttyfast                     " Indicate fast terminal conn for faster redraw
-set ttymouse=xterm2             " Indicate terminal type for mouse codes
-set ttyscroll=3                 " Speedup scrolling
+if !has('nvim')
+    set ttymouse=xterm2             " Indicate terminal type for mouse codes
+    set ttyscroll=3                 " Speedup scrolling
+endif
 set laststatus=2                " Show status line always
 set encoding=utf-8				" set default encoding to UTF-8
 set autoread                    " Automatically read changed files
