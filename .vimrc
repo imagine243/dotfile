@@ -159,9 +159,9 @@ nnoremap Y y$
 
 " Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
 " quickfix window with <leader>a
-" nnoremap <leader>n :cnext<CR>
-" nnoremap <leader>m :cprevious<CR>
-" nnoremap <leader>c :cclose<CR>
+nnoremap <leader>n :cnext<CR>
+nnoremap <leader>m :cprevious<CR>
+nnoremap <leader>c :cclose<CR>
 
 """""""""""""""""""""""""""""
 "    plugin setting			"					
@@ -243,7 +243,7 @@ augroup go
   " :GoDoc
   autocmd FileType go nmap <Leader>d <Plug>(go-doc)
   " :GoCoverageToggle
-  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <Leader>tc <Plug>(go-coverage-toggle)
   " :GoInfo
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
   " :GoMetaLinter
@@ -290,7 +290,7 @@ let g:NERDTrimTrailingWhitespace = 1
 " Tagbar: a class outline viewer for Vim
 " brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 " Plugin 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
+nmap <F8> :TagbarOpen fj<CR>
 
 " ack.vim
 " Run your favorite search tool from Vim, with an enhanced results list.
