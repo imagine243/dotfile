@@ -246,6 +246,8 @@ augroup go
   autocmd FileType go nmap <Leader>tc <Plug>(go-coverage-toggle)
   " :GoInfo
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
+  " :GoImplements
+  autocmd FileType go nmap <Leader>im <Plug>(go-implements)
   " :GoMetaLinter
   autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
   " :GoDef but opens in a vertical split
