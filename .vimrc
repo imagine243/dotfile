@@ -186,7 +186,8 @@ let g:ctrlp_custom_ignore = {
 
 " nerdtree
 " Plugin 'scrooloose/nerdtree'
-map <F9> :NERDTreeToggle<CR>
+" map <F9> :NERDTreeToggle<CR>
+map <Leader>nt :NERDTreeToggle<CR>
 
 " Valloric/YouCompleteMe
 " Plugin 'Valloric/YouCompleteMe'
@@ -292,7 +293,8 @@ let g:NERDTrimTrailingWhitespace = 1
 " Tagbar: a class outline viewer for Vim
 " brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 " Plugin 'majutsushi/tagbar'
-nmap <F8> :TagbarOpen fj<CR>
+" nmap <F8> :TagbarOpen fj<CR>
+nmap <Leader>t :TagbarOpen fj<CR>
 
 " ack.vim
 " Run your favorite search tool from Vim, with an enhanced results list.
