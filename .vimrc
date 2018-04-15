@@ -188,6 +188,7 @@ let g:ctrlp_custom_ignore = {
 " Plugin 'scrooloose/nerdtree'
 " map <F9> :NERDTreeToggle<CR>
 map <Leader>nt :NERDTreeToggle<CR>
+map <Leader>nf :NERDTreeFocus<CR>
 
 " Valloric/YouCompleteMe
 " Plugin 'Valloric/YouCompleteMe'
