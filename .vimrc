@@ -15,7 +15,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'fatih/molokai'
 Plugin 'mhinz/vim-startify'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'scrooloose/nerdcommenter'
@@ -23,16 +22,19 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
-Plugin 'majutsushi/tagbar'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'mhinz/vim-signify'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'mileszs/ack.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'SirVer/ultisnips'
-Plugin 'scrooloose/syntastic'
+Plugin 'Yggdroot/LeaderF'
+Plugin 'w0rp/ale'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'Shougo/echodoc.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -125,6 +127,7 @@ if has('persistent_undo')
   set undodir=~/.config/vim/tmp/undo//
 endif
 
+set tags=./.tags;,.tags
 """"""""""""""""""""""
 "      mapping        "
 """""""""""""""""""""""
@@ -291,12 +294,6 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Tagbar: a class outline viewer for Vim
-" brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-" Plugin 'majutsushi/tagbar'
-" nmap <F8> :TagbarOpen fj<CR>
-nmap <Leader>t :TagbarOpen fj<CR>
-
 " ack.vim
 " Run your favorite search tool from Vim, with an enhanced results list.
 " Plugin 'mileszs/ack.vim'
@@ -307,11 +304,6 @@ cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 vnoremap <Leader>a y:Ack!<Space> <C-r>=fnameescape(@")<CR><CR>
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -320,3 +312,58 @@ let g:syntastic_go_checkers = ['go','gofmt','govet']
 
 "ultisnips
 let g:UltiSnipsExpandTrigger="<c-j>"
+
+"leaderf
+map <Leader>ff :LeaderfFunction<CR>
+map <Leader>ffa :LeaderfFunctionAll<CR>
+map <Leader>fb :LeaderfBuffer<CR>
+map <Leader>fm :LeaderfMru<CR>
+map <Leader>ft :LeaderfTag<CR>
+map <Leader>fl :LeaderfLine<CR>
+map <Leader>fc :LeaderfHistoryCmd<CR>
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 0
+
+" vim-gutentags
+" 作者：韦易笑
+" 链接：https://www.zhihu.com/question/47691414/answer/37370071
+" 来源：知乎
+" 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+" w0rp/ale
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
+
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
