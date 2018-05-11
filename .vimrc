@@ -170,22 +170,22 @@ nnoremap <leader>c :cclose<CR>
 "    plugin setting			"					
 """""""""""""""""""""""""""""
 
-" Plugin 'ctrlpvim/ctrlp.vim'
-""" ctrlp setting https://github.com/ctrlpvim/ctrlp.vim
-if executable('ag')													" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -f -g ""'			" Use ag in CtrlP for listing files. Lightning fast, respects .gitignore and .agignore. Ignores hidden files by default.
-else																"ctrl+p ignore files in .gitignore
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-endif
-let g:ctrlp_working_path_mode = ''									" When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable
-let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']					" If none of the default markers (.git .hg .svn .bzr _darcs) are present in a project, you can define additional ones with g:ctrlp_root_markers:
-" Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore. If a custom listing command is being used, exclusions are ignored
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
+" " Plugin 'ctrlpvim/ctrlp.vim'
+" """ ctrlp setting https://github.com/ctrlpvim/ctrlp.vim
+" if executable('ag')													" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+"   set grepprg=ag\ --nogroup\ --nocolor
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor -f -g ""'			" Use ag in CtrlP for listing files. Lightning fast, respects .gitignore and .agignore. Ignores hidden files by default.
+" else																"ctrl+p ignore files in .gitignore
+"   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+" endif
+" let g:ctrlp_working_path_mode = ''									" When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable
+" let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']					" If none of the default markers (.git .hg .svn .bzr _darcs) are present in a project, you can define additional ones with g:ctrlp_root_markers:
+" " Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore. If a custom listing command is being used, exclusions are ignored
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"   \ 'file': '\v\.(exe|so|dll)$',
+"   \ 'link': 'some_bad_symbolic_links',
+"   \ }
 
 " nerdtree
 " Plugin 'scrooloose/nerdtree'
@@ -367,3 +367,6 @@ let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
+
+" Enable all of the linters you want for Go.
+let g:ale_linters = {'go': ['gometalinter', 'gofmt']}
