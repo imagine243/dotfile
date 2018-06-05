@@ -25,6 +25,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'Shougo/echodoc.vim'
 Plug 'skywind3000/vim-preview'
+Plug 'wsdjeg/FlyGrep.vim'
 
 call plug#end()
 
@@ -375,3 +376,7 @@ autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
 " gtags
 let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+
+" FlyGrep
+nnoremap <Space>fw :FlyGrep<cr>
+g:FlyGrep_search_tools = 'ag'
