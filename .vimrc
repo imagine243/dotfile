@@ -25,7 +25,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'Shougo/echodoc.vim'
 Plug 'skywind3000/vim-preview'
-Plug 'wsdjeg/FlyGrep.vim'
+Plug 'wsdjeg/FlyGrep.vim' , {'do' : 'brew install ripgrep'}
 
 call plug#end()
 
@@ -379,4 +379,4 @@ let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 
 " FlyGrep
 nnoremap <Space>fw :FlyGrep<cr>
-g:FlyGrep_search_tools = 'ag'
+" g:FlyGrep_search_tools = ['rg']
