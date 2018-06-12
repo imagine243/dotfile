@@ -30,86 +30,6 @@ Plug 'wsdjeg/FlyGrep.vim' , {'do' : 'brew install ripgrep'}
 call plug#end()
 
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-filetype plugin indent on	  " enable filetype detection
-""""""""""""""""""""""
-"      Setting        "
-"""""""""""""""""""""""
-" color
-syntax enable					" syntax enable
-set t_Co=256
-" color slate					" colorscheme
-let g:rehash256 = 1
-" let g:molokai_original = 1
-colorscheme molokai
-
-set ttyfast                     " Indicate fast terminal conn for faster redraw
-if !has('nvim')
-    set ttymouse=xterm2             " Indicate terminal type for mouse codes
-    set ttyscroll=3                 " Speedup scrolling
-endif
-set laststatus=2                " Show status line always
-set encoding=utf-8				" set default encoding to UTF-8
-set autoread                    " Automatically read changed files
-set backspace=indent,eol,start  " Makes backspace key more powerful.
-set incsearch                   " Shows the match while typing
-set hlsearch                    " Highlight found searches
-set noerrorbells                " No beeps
-set number                      " Show line numbers
-set showcmd                     " Show me what I'm typing
-set noswapfile                  " Don't use swapfile
-set nobackup                    " Don't create annoying backup files
-set splitright                  " Vertical windows should be split to right
-set splitbelow                  " Horizontal windows should split to bottom
-set autowrite                   " Automatically save before :next, :make etc.
-set hidden                      " Buffer should still exist if window is closed
-set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
-set noshowmatch                 " Do not show matching brackets by flickering
-set noshowmode                  " We show the mode with airline or lightline
-set ignorecase                  " Search case insensitive...
-set smartcase                   " ... but not it begins with upper case
-set completeopt=menu,menuone    " Show popup menu, even if there is one entry
-set pumheight=10                " Completion window max size
-set nocursorcolumn              " Do not highlight column (speeds up highlighting)
-set nocursorline                " Do not highlight cursor (speeds up highlighting)
-set lazyredraw                  " Wait to redraw
-
-" tab & space
-set tabstop=4					" number of visual spaces per TAB
-set softtabstop=4				" 点击tab 输入的 space数量 点击删除 删除的space数量
-set autoindent					" 自动换行
-" set expandtab					" 使用space 替代 tab 禁用 会影响space当作leader key
-
-
-" visual autocomplete for command menu
-set wildmenu
-
-set guioptions-=m				"remove menu bar
-set guioptions-=T				"remove toolbar
-set guioptions-=r				"remove right-hand scroll bar
-set guioptions-=L				"remove left-hand scroll bar
-
-" foldlevel
-set foldlevel=99
-
-" MacOSX/Linux
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-
-" Enable to copy to clipboard for operations like yank, delete, change and put
-" http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
-if has('unnamedplus')
-  set clipboard^=unnamed
-  set clipboard^=unnamedplus
-endif
-
-" This enables us to undo files even if you exit Vim.
-if has('persistent_undo')
-  set undofile
-  set undodir=~/.config/vim/tmp/undo//
-endif
-
-set tags=./.tags;,.tags
 """"""""""""""""""""""
 "      mapping        "
 """""""""""""""""""""""
@@ -380,3 +300,5 @@ let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 " FlyGrep
 nnoremap <Space>fw :FlyGrep<cr>
 " g:FlyGrep_search_tools = ['rg']
+
+source ~/gitdir/dotfile/vim_config/init.vim
