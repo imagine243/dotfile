@@ -160,7 +160,6 @@ set t_Co=256
 " color slate					" colorscheme
 let g:rehash256 = 1
 " let g:molokai_original = 1
-colorscheme molokai
 
 set ttyfast                     " Indicate fast terminal conn for faster redraw
 if !has('nvim')

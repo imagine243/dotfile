@@ -127,8 +127,9 @@ if index(g:bundle_group, 'tags') >= 0
 	let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 	let g:gutentags_ctags_tagfile = '.tags'
 
-	" 默认生成的数据文件集中到 ~/.cache/tags 避免污染项目目录，好清理
-	let g:gutentags_cache_dir = expand('~/.cache/tags')
+	" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+	let s:vim_tags = expand('~/.cache/tags')
+	let g:gutentags_cache_dir = s:vim_tags
 
 	" 默认禁用自动生成
 	let g:gutentags_modules = [] 
@@ -430,3 +431,7 @@ let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 " FlyGrep
 nnoremap <Space>fw :FlyGrep<cr>
 " g:FlyGrep_search_tools = ['rg']
+
+
+
+colorscheme molokai
