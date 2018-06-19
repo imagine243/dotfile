@@ -6,20 +6,226 @@ if !exists('g:bundle_group')
 endif
 
 " vim-plug https://github.com/junegunn/vim-plug
+"----------------------------------------------------------------------
+" 在 ~/.vim/plugged 下安装插件
+"----------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
-Plug 'fatih/molokai'
-Plug 'mhinz/vim-startify'
+"----------------------------------------------------------------------
+" 默认插件 
+"----------------------------------------------------------------------
+Plug 'easymotion/vim-easymotion'
+
+" 表格对齐，使用命令 Tabularize
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+
+" Diff 增强，支持 histogram / patience 等更科学的 diff 算法
+Plug 'chrisbra/vim-diff-enhanced'
+
+
+"----------------------------------------------------------------------
+" 基础插件
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'basic') >= 0
+	" 展示开始画面，显示最近编辑过的文件
+	Plug 'mhinz/vim-startify'
+
+	" molokai color scheme
+	Plug 'fatih/molokai'
+
+	" 一次性安装一大堆 colorscheme
+	Plug 'flazz/vim-colorschemes'
+	
+	" 支持库，给其他插件用的函数库
+	Plug 'xolox/vim-misc'
+
+	" 用于在侧边符号栏显示 git/svn 的 diff
+	Plug 'mhinz/vim-signify'
+	
+	" 用于在侧边符号栏显示 marks （ma-mz 记录的位置）
+	Plug 'kshenoy/vim-signature'
+
+	" 提供基于 TAGS 的定义预览，函数参数预览，quickfix 预览
+	Plug 'skywind3000/vim-preview'
+
+	" Git 支持
+	Plug 'tpope/vim-fugitive'
+
+	" 根据 quickfix 中匹配到的错误信息，高亮对应文件的错误行
+	" 使用 :RemoveErrorMarkers 命令或者 <space>ha 清除错误
+	Plug 'mh21/errormarker.vim'	
+
+	" 默认不显示 startify
+	" let g:startify_disable_at_vimenter = 1
+	let g:startify_session_dir = '~/.vim/session'
+
+	" 使用 <space>ha 清除 errormarker 标注的错误
+	noremap <silent><space>ha :RemoveErrorMarkers<cr>
+
+	" signify 调优
+	let g:signify_vcs_list = ['git', 'svn']
+	let g:signify_sign_add               = '+'
+	let g:signify_sign_delete            = '_'
+	let g:signify_sign_delete_first_line = '‾'
+	let g:signify_sign_change            = '~'
+	let g:signify_sign_changedelete      = g:signify_sign_change
+
+	" git 仓库使用 histogram 算法进行 diff
+	let g:signify_vcs_cmds = {
+			\ 'git': 'git diff --no-color --diff-algorithm=histogram --no-ext-diff -U0 -- %f',
+			\}
+endif
+
+
+"----------------------------------------------------------------------
+" 增强插件
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'enhanced') >= 0
+
+	" " 用 v 选中一个区域后，ALT_+/- 按分隔符扩大/缩小选区
+	" Plug 'terryma/vim-expand-region'
+
+	" 快速文件搜索
+	Plug 'junegunn/fzf'
+
+	" 给不同语言提供字典补全，插入模式下 c-x c-k 触发
+	Plug 'asins/vim-dict'
+
+	" 使用 :FlyGrep 命令进行实时 grep
+	Plug 'wsdjeg/FlyGrep.vim'
+
+	" 使用 :CtrlSF 命令进行模仿 sublime 的 grep
+	Plug 'dyng/ctrlsf.vim'
+
+	" 配对括号和引号自动补全
+	Plug 'Raimondi/delimitMate'
+
+	" 提供 gist 接口
+	Plug 'lambdalisue/vim-gista', { 'on': 'Gista' }
+	
+	" " ALT_+/- 用于按分隔符扩大缩小 v 选区
+	" map <m-=> <Plug>(expand_region_expand)
+	" map <m--> <Plug>(expand_region_shrink)
+endif
+	
+"----------------------------------------------------------------------
+" 自动生成 ctags/gtags，并提供自动索引功能
+" 不在 git/svn 内的项目，需要在项目根目录 touch 一个空的 .root 文件
+" 详细用法见：https://zhuanlan.zhihu.com/p/36279445
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'tags') >= 0
+
+	" 提供 ctags/gtags 后台数据库自动更新功能
+	Plug 'ludovicchabant/vim-gutentags'
+
+	" 提供 GscopeFind 命令并自动处理好 gtags 数据库切换
+	" 支持光标移动到符号名上：<leader>cg 查看定义，<leader>cs 查看引用
+	Plug 'skywind3000/gutentags_plus'
+
+	" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+	" 设定项目目录标志：除了 .git/.svn 外，还有 .root 文件
+	let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+	let g:gutentags_ctags_tagfile = '.tags'
+
+	" 默认生成的数据文件集中到 ~/.cache/tags 避免污染项目目录，好清理
+	let g:gutentags_cache_dir = expand('~/.cache/tags')
+
+	" 默认禁用自动生成
+	let g:gutentags_modules = [] 
+
+	" 如果有 ctags 可执行就允许动态生成 ctags 文件
+	if executable('ctags')
+		let g:gutentags_modules += ['ctags']
+	endif
+
+	" 如果有 gtags 可执行就允许动态生成 gtags 数据库
+	if executable('gtags') && executable('gtags-cscope')
+		let g:gutentags_modules += ['gtags_cscope']
+	endif
+
+	" 设置 ctags 的参数
+	let g:gutentags_ctags_extra_args = []
+	let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+	let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+	let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+	" 使用 universal-ctags 的话需要下面这行，请反注释
+	" let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+	" 禁止 gutentags 自动链接 gtags 数据库
+	let g:gutentags_auto_add_gtags_cscope = 0
+	
+	" 如果使用 universal ctags 需要增加下面一行
+	let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+	" 检测 ~/.cache/tags 不存在就新建
+	if !isdirectory(s:vim_tags)
+		silent! call mkdir(s:vim_tags, 'p')
+	endif
+
+endif
+
+"----------------------------------------------------------------------
+" 文本对象：textobj 全家桶
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'textobj')
+	
+	" 基础插件：提供让用户方便的自定义文本对象的接口
+	Plug 'kana/vim-textobj-user'
+
+	" indent 文本对象：ii/ai 表示当前缩进，vii 选中当缩进，cii 改写缩进
+	Plug 'kana/vim-textobj-indent'
+
+	" 语法文本对象：iy/ay 基于语法的文本对象
+	Plug 'kana/vim-textobj-syntax'
+
+	" 函数文本对象：if/af 支持 c/c++/vim/java
+	Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
+
+	" 参数文本对象：i,/a, 包括参数或者列表元素
+	Plug 'sgur/vim-textobj-parameter'
+
+	" 提供 python 相关文本对象，if/af 表示函数，ic/ac 表示类
+	Plug 'bps/vim-textobj-python', {'for': 'python'}
+
+	" 提供 uri/url 的文本对象，iu/au 表示
+	Plug 'jceb/vim-textobj-uri'
+endif
+
+"----------------------------------------------------------------------
+" 文件类型扩展
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'filetypes') >= 0
+
+	" powershell 脚本文件的语法高亮
+	Plug 'pprovost/vim-ps1', { 'for': 'ps1' }
+
+	" lua 语法高亮增强
+	Plug 'tbastos/vim-lua', { 'for': 'lua' }
+
+	" C++ 语法高亮增强，支持 11/14/17 标准
+	Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
+
+	" 额外语法文件
+	Plug 'justinmk/vim-syntax-extra', { 'for': ['c', 'bison', 'flex', 'cpp'] }
+
+	" python 语法文件增强
+	Plug 'vim-python/python-syntax', { 'for': ['python'] }
+
+	" rust 语法增强
+	Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+
+	" vim org-mode 
+	Plug 'jceb/vim-orgmode', { 'for': 'org' }
+endif
+
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Valloric/YouCompleteMe' , {'do':'./install.py --all'}
-Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-fugitive'
 Plug 'fatih/vim-go' , {'do':':GoInstallBinaries'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'bling/vim-airline'
-Plug 'mhinz/vim-signify'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'mileszs/ack.vim'
@@ -27,11 +233,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'Yggdroot/LeaderF' , { 'do': './install.sh' }
 Plug 'w0rp/ale'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'Shougo/echodoc.vim'
-Plug 'skywind3000/vim-preview'
-Plug 'wsdjeg/FlyGrep.vim' , {'do' : 'brew install ripgrep'}
 
 call plug#end()
 
@@ -196,46 +399,6 @@ let g:Lf_WindowHeight = 0.30
 let g:Lf_CacheDirectory = expand('~/.vim/cache')
 let g:Lf_ShowRelativePath = 0
 
-" vim-gutentags
-" 作者：韦易笑
-" 链接：https://www.zhihu.com/question/47691414/answer/37370071
-" 来源：知乎
-" 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-
-" 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile = '.tags'
-
-" 同时开启 ctags 和 gtags 支持：
-let g:gutentags_modules = []
-if executable('ctags')
-	let g:gutentags_modules += ['ctags']
-endif
-if executable('gtags-cscope') && executable('gtags')
-	let g:gutentags_modules += ['gtags_cscope']
-endif
-
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-
-" 配置 ctags 的参数
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-" 如果使用 universal ctags 需要增加下面一行
-let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-
-" 禁用 gutentags 自动加载 gtags 数据库的行为
-let g:gutentags_auto_add_gtags_cscope = 0
-
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
 
 " w0rp/ale
 let g:ale_linters_explicit = 1
