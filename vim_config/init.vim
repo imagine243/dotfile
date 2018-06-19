@@ -35,7 +35,7 @@ set rtp+=~/.vim
 LoadScript init/init-basic.vim
 
 " 加载扩展配置
-" LoadScript init/init-config.vim
+LoadScript init/init-config.vim
 
 " 设定 tabsize
 " LoadScript init/init-tabsize.vim
