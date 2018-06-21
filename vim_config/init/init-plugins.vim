@@ -453,6 +453,4 @@ let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 nnoremap <Space>fw :FlyGrep<cr>
 " g:FlyGrep_search_tools = ['rg']
 
-
-
 colorscheme molokai
