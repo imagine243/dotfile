@@ -3,6 +3,7 @@ if !exists('g:bundle_group')
 	let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
 	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
 	let g:bundle_group += ['leaderf']
+	let g:bundle_group += ['grammer']
 endif
 
 " vim-plug https://github.com/junegunn/vim-plug
@@ -96,6 +97,9 @@ if index(g:bundle_group, 'enhanced') >= 0
 
 	" 使用 :CtrlSF 命令进行模仿 sublime 的 grep
 	Plug 'dyng/ctrlsf.vim'
+
+	let g:ctrlsf_search_mode = 'async'
+	let g:ctrlsf_default_view_mode = 'compact'
 
 	" 配对括号和引号自动补全
 	Plug 'Raimondi/delimitMate'
@@ -242,76 +246,304 @@ if index(g:bundle_group, 'airline') >= 0
 endif
 
 
-Plug 'scrooloose/nerdtree'
-Plug 'xuyuanp/nerdtree-git-plugin'
+"----------------------------------------------------------------------
+" NERDTree
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'nerdtree') >= 0
+	Plug 'scrooloose/nerdtree', {'on': ['NERDTree', 'NERDTreeFocus', 'NERDTreeToggle', 'NERDTreeCWD', 'NERDTreeFind'] }
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+	Plug 'xuyuanp/nerdtree-git-plugin'
+	let g:NERDTreeMinimalUI = 1
+	let g:NERDTreeDirArrows = 1
+	let g:NERDTreeHijackNetrw = 0
+	noremap <Leader>nf :NERDTreeFocus<cr>
+	noremap <Leader>nm :NERDTreeMirror<cr>
+	noremap <Leader>nt :NERDTreeToggle<cr>
+endif
+
+
+"----------------------------------------------------------------------
+" LanguageTool 语法检查
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'grammer') >= 0
+	Plug 'rhysd/vim-grammarous'
+	noremap <Leader>rg :GrammarousCheck --lang=en-US --no-move-to-first-error --no-preview<cr>
+	map <Leader>rr <Plug>(grammarous-open-info-window)
+	map <Leader>rv <Plug>(grammarous-move-to-info-window)
+	map <Leader>rs <Plug>(grammarous-reset)
+	map <Leader>rx <Plug>(grammarous-close-info-window)
+	map <Leader>rm <Plug>(grammarous-remove-error)
+	map <Leader>rd <Plug>(grammarous-disable-rule)
+	map <Leader>rn <Plug>(grammarous-move-to-next-error)
+	map <Leader>rp <Plug>(grammarous-move-to-previous-error)
+endif
+
+
+"----------------------------------------------------------------------
+" ale：动态语法检查
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'ale') >= 0
+	Plug 'w0rp/ale'
+
+	let g:ale_linters_explicit = 1
+
+	" 设定延迟和提示信息
+	let g:ale_completion_delay = 500
+	let g:ale_echo_delay = 20
+	let g:ale_lint_delay = 500
+	let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+
+	" 设定检测的时机：normal 模式文字改变，或者离开 insert模式
+	" 禁用默认 INSERT 模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
+	let g:ale_lint_on_text_changed = 'normal'
+	let g:ale_lint_on_insert_leave = 1
+
+	" 在 linux/mac 下降低语法检查程序的进程优先级（不要卡到前台进程）
+	if has('win32') == 0 && has('win64') == 0 && has('win32unix') == 0
+		let g:ale_command_wrapper = 'nice -n5'
+	endif
+
+	" 允许 airline 集成
+	let g:airline#extensions#ale#enabled = 1
+
+	" 编辑不同文件类型需要的语法检查器
+	let g:ale_linters = {
+				\ 'c': ['gcc', 'cppcheck'], 
+				\ 'cpp': ['gcc', 'cppcheck'], 
+				\ 'python': ['flake8', 'pylint'], 
+				\ 'lua': ['luac'], 
+				\ 'go': ['go build', 'gofmt'],
+				\ 'java': ['javac'],
+				\ 'javascript': ['eslint'], 
+				\ }
+
+
+	let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+	let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+	let g:ale_c_cppcheck_options = ''
+	let g:ale_cpp_cppcheck_options = ''
+
+	let g:ale_linters.text = ['textlint', 'write-good', 'languagetool']
+
+	" 如果没有 gcc 只有 clang 时（FreeBSD）
+	if executable('gcc') == 0 && executable('clang')
+		let g:ale_linters.c += ['clang']
+		let g:ale_linters.cpp += ['clang']
+	endif
+	
+	" Enable all of the linters you want for Go.
+	let g:ale_linters.go += ['gometalinter', 'gofmt']
+endif
+
+
+"----------------------------------------------------------------------
+" echodoc：搭配 YCM/deoplete 在底部显示函数参数
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'echodoc') >= 0
+	Plug 'Shougo/echodoc.vim'
+	set noshowmode
+	let g:echodoc#enable_at_startup = 1
+endif
+
+"----------------------------------------------------------------------
+" LeaderF：CtrlP / FZF 的超级代替者，文件模糊匹配，tags/函数名 选择
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'leaderf') >= 0
+	" 如果 vim 支持 python 则启用  Leaderf
+	if has('python') || has('python3')
+		Plug 'Yggdroot/LeaderF'
+
+		" CTRL+p 打开文件模糊匹配
+		let g:Lf_ShortcutF = '<c-p>'
+
+		" ALT+n 打开 buffer 模糊匹配
+		let g:Lf_ShortcutB = '<m-n>'
+
+		" " CTRL+n 打开最近使用的文件 MRU，进行模糊匹配
+		" noremap <c-n> :LeaderfMru<cr>
+        "
+		" " ALT+p 打开函数列表，按 i 进入模糊匹配，ESC 退出
+		" noremap <m-p> :LeaderfFunction!<cr>
+        "
+		" " ALT+SHIFT+p 打开 tag 列表，i 进入模糊匹配，ESC退出
+		" noremap <m-P> :LeaderfBufTag!<cr>
+        "
+		" " ALT+n 打开 buffer 列表进行模糊匹配
+		" noremap <m-n> :LeaderfBuffer<cr>
+        "
+		" " 全局 tags 模糊匹配
+		" noremap <m-m> :LeaderfTag<cr>
+
+		" 最大历史文件保存 2048 个
+		let g:Lf_MruMaxFiles = 2048
+
+		" ui 定制
+		let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+
+		" 如何识别项目目录，从当前文件目录向父目录递归知道碰到下面的文件/目录
+		let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+		let g:Lf_WorkingDirectoryMode = 'Ac'
+		let g:Lf_WindowHeight = 0.30
+		let g:Lf_CacheDirectory = expand('~/.vim/cache')
+
+		" 显示绝对路径
+		let g:Lf_ShowRelativePath = 0
+
+		" 隐藏帮助
+		let g:Lf_HideHelp = 1
+
+		" 模糊匹配忽略扩展名
+		let g:Lf_WildIgnore = {
+					\ 'dir': ['.svn','.git','.hg'],
+					\ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+					\ }
+
+		" MRU 文件忽略扩展名
+		let g:Lf_MruFileExclude = ['*.so', '*.exe', '*.py[co]', '*.sw?', '~$*', '*.bak', '*.tmp', '*.dll']
+		let g:Lf_StlColorscheme = 'powerline'
+
+		" 禁用 function/buftag 的预览功能，可以手动用 p 预览
+		let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+
+		map <Leader>ff :LeaderfFunction<CR>
+		map <Leader>ffa :LeaderfFunctionAll<CR>
+		map <Leader>fb :LeaderfBuffer<CR>
+		map <Leader>fm :LeaderfMru<CR>
+		map <Leader>ft :LeaderfTag<CR>
+		map <Leader>fl :LeaderfLine<CR>
+		map <Leader>fc :LeaderfHistoryCmd<CR>
+	else
+		" 不支持 python ，使用 CtrlP 代替
+		Plug 'ctrlpvim/ctrlp.vim'
+
+		" 显示函数列表的扩展插件
+		Plug 'tacahiroy/ctrlp-funky'
+
+		" 忽略默认键位
+		let g:ctrlp_map = ''
+
+		" 模糊匹配忽略
+		let g:ctrlp_custom_ignore = {
+		  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+		  \ 'file': '\v\.(exe|so|dll|mp3|wav|sdf|suo|mht)$',
+		  \ 'link': 'some_bad_symbolic_links',
+		  \ }
+
+		" 项目标志
+		let g:ctrlp_root_markers = ['.project', '.root', '.svn', '.git']
+		let g:ctrlp_working_path = 0
+
+		" CTRL+p 打开文件模糊匹配
+		noremap <c-p> :CtrlP<cr>
+
+		" CTRL+n 打开最近访问过的文件的匹配
+		noremap <c-n> :CtrlPMRUFiles<cr>
+
+		" ALT+p 显示当前文件的函数列表
+		noremap <m-p> :CtrlPFunky<cr>
+
+		" ALT+n 匹配 buffer
+		noremap <m-n> :CtrlPBuffer<cr>
+	endif
+endif
+
+
 Plug 'scrooloose/nerdcommenter'
 Plug 'Valloric/YouCompleteMe' , {'do':'./install.py --all'}
 Plug 'fatih/vim-go' , {'do':':GoInstallBinaries'}
 Plug 'jiangmiao/auto-pairs'
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'mileszs/ack.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
-Plug 'Yggdroot/LeaderF' , { 'do': './install.sh' }
-Plug 'w0rp/ale'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'Shougo/echodoc.vim'
 
 call plug#end()
 
 """""""""""""""""""""""""""""
 "    plugin setting			"					
 """""""""""""""""""""""""""""
+"----------------------------------------------------------------------
+" YouCompleteMe 默认设置：YCM 需要你另外手动编译安装
+"----------------------------------------------------------------------
 
-" " Plugin 'ctrlpvim/ctrlp.vim'
-" """ ctrlp setting https://github.com/ctrlpvim/ctrlp.vim
-" if executable('ag')													" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-"   set grepprg=ag\ --nogroup\ --nocolor
-"   let g:ctrlp_user_command = 'ag %s -l --nocolor -f -g ""'			" Use ag in CtrlP for listing files. Lightning fast, respects .gitignore and .agignore. Ignores hidden files by default.
-" else																"ctrl+p ignore files in .gitignore
-"   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-" endif
-" let g:ctrlp_working_path_mode = ''									" When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable
-" let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']					" If none of the default markers (.git .hg .svn .bzr _darcs) are present in a project, you can define additional ones with g:ctrlp_root_markers:
-" " Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore. If a custom listing command is being used, exclusions are ignored
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-"   \ 'file': '\v\.(exe|so|dll)$',
-"   \ 'link': 'some_bad_symbolic_links',
-"   \ }
-
-" nerdtree
-" Plugin 'scrooloose/nerdtree'
-" map <F9> :NERDTreeToggle<CR>
-map <Leader>nt :NERDTreeToggle<CR>
-map <Leader>nf :NERDTreeFocus<CR>
-
-" Valloric/YouCompleteMe
-" Plugin 'Valloric/YouCompleteMe'
-" YouCompleteMe config 参考了知乎韦易笑
-"作者：韦易笑
-"链接：https://zhuanlan.zhihu.com/p/33046090
-"来源：知乎
-"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-" 屏蔽ycm自动弹出的函数原型预览窗口
-set completeopt=menu,menuone
+" 禁用预览功能：扰乱视听
 let g:ycm_add_preview_to_completeopt = 0
-" 屏蔽ycm的诊断信息
-"jlet g:ycm_show_diagnostics_ui = 0
+
+" 禁用诊断功能：我们用前面更好用的 ALE 代替
+let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
-" 基于符号的补全，  输入两个字符后就提示补全
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_complete_in_strings=1
-" 使用ctrl-z 显示语义的补全提示
 let g:ycm_key_invoke_completion = '<c-z>'
-noremap <c-z> <NOP>
-"  输入两个字符就开始语义的自动补全
+set completeopt=menu,menuone
+
+" noremap <c-z> <NOP>
+
+" 两个字符自动触发语义补全
 let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
+
+
+"----------------------------------------------------------------------
+" Ycm 白名单（非名单内文件不启用 YCM），避免打开个 1MB 的 txt 分析半天
+"----------------------------------------------------------------------
+let g:ycm_filetype_whitelist = { 
+			\ "c":1,
+			\ "cpp":1, 
+			\ "objc":1,
+			\ "objcpp":1,
+			\ "python":1,
+			\ "java":1,
+			\ "javascript":1,
+			\ "coffee":1,
+			\ "vim":1, 
+			\ "go":1,
+			\ "cs":1,
+			\ "lua":1,
+			\ "perl":1,
+			\ "perl6":1,
+			\ "php":1,
+			\ "ruby":1,
+			\ "rust":1,
+			\ "erlang":1,
+			\ "asm":1,
+			\ "nasm":1,
+			\ "masm":1,
+			\ "tasm":1,
+			\ "asm68k":1,
+			\ "asmh8300":1,
+			\ "asciidoc":1,
+			\ "basic":1,
+			\ "vb":1,
+			\ "make":1,
+			\ "cmake":1,
+			\ "html":1,
+			\ "css":1,
+			\ "less":1,
+			\ "json":1,
+			\ "cson":1,
+			\ "typedscript":1,
+			\ "haskell":1,
+			\ "lhaskell":1,
+			\ "lisp":1,
+			\ "scheme":1,
+			\ "sdl":1,
+			\ "sh":1,
+			\ "zsh":1,
+			\ "bash":1,
+			\ "man":1,
+			\ "markdown":1,
+			\ "matlab":1,
+			\ "maxima":1,
+			\ "dosini":1,
+			\ "conf":1,
+			\ "config":1,
+			\ "zimbu":1,
+			\ "ps1":1,
+			\ }
+
 
 " Plugin 'fatih/vim-go'
 let g:go_fmt_command = "goimports"
@@ -388,57 +620,10 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" ack.vim
-" Run your favorite search tool from Vim, with an enhanced results list.
-" Plugin 'mileszs/ack.vim'
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --smart-case'
-endif
-cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
-vnoremap <Leader>a y:Ack!<Space> <C-r>=fnameescape(@")<CR><CR>
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_go_checkers = ['go','gofmt','govet']
 
 "ultisnips
 let g:UltiSnipsExpandTrigger="<c-j>"
 
-"leaderf
-map <Leader>ff :LeaderfFunction<CR>
-map <Leader>ffa :LeaderfFunctionAll<CR>
-map <Leader>fb :LeaderfBuffer<CR>
-map <Leader>fm :LeaderfMru<CR>
-map <Leader>ft :LeaderfTag<CR>
-map <Leader>fl :LeaderfLine<CR>
-map <Leader>fc :LeaderfHistoryCmd<CR>
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
-let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = expand('~/.vim/cache')
-let g:Lf_ShowRelativePath = 0
-
-
-" w0rp/ale
-let g:ale_linters_explicit = 1
-let g:ale_completion_delay = 500
-let g:ale_echo_delay = 20
-let g:ale_lint_delay = 500
-let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-let g:airline#extensions#ale#enabled = 1
-
-let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-let g:ale_c_cppcheck_options = ''
-let g:ale_cpp_cppcheck_options = ''
-
-" Enable all of the linters you want for Go.
-let g:ale_linters = {'go': ['gometalinter', 'gofmt']}
 
 " vim-preview
 autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
