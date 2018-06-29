@@ -23,6 +23,8 @@ Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 " Diff 增强，支持 histogram / patience 等更科学的 diff 算法
 Plug 'chrisbra/vim-diff-enhanced'
 
+Plug 'skywind3000/asyncrun.vim'
+
 
 "----------------------------------------------------------------------
 " 基础插件

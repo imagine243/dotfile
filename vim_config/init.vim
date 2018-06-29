@@ -31,44 +31,10 @@ set rtp+=~/.vim
 
 
 
-
-""""""""""""""""""""""
-"      mapping        "
-"""""""""""""""""""""""
 " leader key space
 let mapleader="\<space>"
-" 一行过长 会自动换行 , j k 会移动到 自动换行出来的第二行
-noremap <Up> gk
-noremap <Down> gj
-nnoremap j gj
-nnoremap k gk
-" esc jk
-inoremap jk <esc>
-
-inoremap <C-p> <up>
-inoremap <C-n> <down>
-inoremap <C-b> <left>
-inoremap <C-f> <right>
 
 nnoremap <leader>q :q<CR>
-
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
-nnoremap n nzzzv
-nnoremap N Nzzzv
-" Search for visually selected text use key //
-vnoremap // y/<C-R>"<CR>
-" Act like D and C
-
-nnoremap Y y$
-" Enter automatically into the files directory
-" autocmd BufEnter * silent! lcd %:p:h
-
-" Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
-" quickfix window with <leader>a
-nnoremap <leader>n :cnext<CR>
-nnoremap <leader>m :cprevious<CR>
-nnoremap <leader>c :cclose<CR>
 
 
 
@@ -92,7 +58,7 @@ LoadScript init/init-config.vim
 LoadScript init/init-plugins.vim
 
 " 自定义按键
-" LoadScript init/init-keymaps.vim
+LoadScript init/init-keymaps.vim
 
 
 
