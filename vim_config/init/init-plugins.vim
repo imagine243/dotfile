@@ -360,8 +360,8 @@ if index(g:bundle_group, 'leaderf') >= 0
 		" CTRL+p 打开文件模糊匹配
 		let g:Lf_ShortcutF = '<c-p>'
 
-		" ALT+n 打开 buffer 模糊匹配
-		let g:Lf_ShortcutB = '<m-n>'
+		" " ALT+n 打开 buffer 模糊匹配
+		" let g:Lf_ShortcutB = '<m-n>'
 
 		" " CTRL+n 打开最近使用的文件 MRU，进行模糊匹配
 		" noremap <c-n> :LeaderfMru<cr>
