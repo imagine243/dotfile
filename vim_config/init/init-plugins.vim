@@ -103,6 +103,8 @@ if index(g:bundle_group, 'enhanced') >= 0
 	let g:ctrlsf_search_mode = 'async'
 	let g:ctrlsf_default_view_mode = 'compact'
 
+	noremap <c-F> :CtrlSF<cr>
+
 	" 配对括号和引号自动补全
 	Plug 'Raimondi/delimitMate'
 
