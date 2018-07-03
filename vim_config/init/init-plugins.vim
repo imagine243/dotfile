@@ -105,7 +105,14 @@ if index(g:bundle_group, 'enhanced') >= 0
 	let g:ctrlsf_default_view_mode = 'compact'
 
 	" noremap <c-F> :CtrlSF<cr> :CtrlSFFocus<cr>
-	map <Leader>fe <Plug>CtrlSFCwordPath
+	map <Leader>s  :CtrlSF
+	map <Leader>st :CtrlSFFocus<CR>
+	map <Leader>sc :CtrlSFClose<CR>
+	map <Leader>sw <Plug>CtrlSFCwordPath
+	map <Leader>se <Plug>CtrlSFCwordExec
+	map <Leader>sf <Plug>CtrlSFPrompt<CR>
+	map <Leader>sv <Plug>CtrlSFVwordExec<CR>
+	map <Leader>sp <Plug>CtrlSFPwordPath<CR>
 
 	" 配对括号和引号自动补全
 	Plug 'Raimondi/delimitMate'
