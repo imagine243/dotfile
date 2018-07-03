@@ -49,7 +49,7 @@ LoadScript init/init-basic.vim
 LoadScript init/init-config.vim
 
 " 设定 tabsize
-" LoadScript init/init-tabsize.vim
+LoadScript init/init-tabsize.vim
 
 " 界面样式
 " LoadScript init/init-style.vim

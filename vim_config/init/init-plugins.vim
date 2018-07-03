@@ -4,6 +4,7 @@ if !exists('g:bundle_group')
 	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
 	let g:bundle_group += ['leaderf']
 	let g:bundle_group += ['grammer']
+	let g:bundle_group += ['language']
 endif
 
 " vim-plug https://github.com/junegunn/vim-plug
@@ -38,13 +39,13 @@ if index(g:bundle_group, 'basic') >= 0
 
 	" 一次性安装一大堆 colorscheme
 	Plug 'flazz/vim-colorschemes'
-	
+
 	" 支持库，给其他插件用的函数库
 	Plug 'xolox/vim-misc'
 
 	" 用于在侧边符号栏显示 git/svn 的 diff
 	Plug 'mhinz/vim-signify'
-	
+
 	" 用于在侧边符号栏显示 marks （ma-mz 记录的位置）
 	Plug 'kshenoy/vim-signature'
 
@@ -75,8 +76,8 @@ if index(g:bundle_group, 'basic') >= 0
 
 	" git 仓库使用 histogram 算法进行 diff
 	let g:signify_vcs_cmds = {
-			\ 'git': 'git diff --no-color --diff-algorithm=histogram --no-ext-diff -U0 -- %f',
-			\}
+				\ 'git': 'git diff --no-color --diff-algorithm=histogram --no-ext-diff -U0 -- %f',
+				\}
 endif
 
 
@@ -103,7 +104,7 @@ if index(g:bundle_group, 'enhanced') >= 0
 	let g:ctrlsf_search_mode = 'async'
 	let g:ctrlsf_default_view_mode = 'compact'
 
-	noremap <c-F> :CtrlSF<cr> :CtrlSFFocus<cr>
+	" noremap <c-F> :CtrlSF<cr> :CtrlSFFocus<cr>
 	map <Leader>fe <Plug>CtrlSFCwordPath
 
 	" 配对括号和引号自动补全
@@ -111,12 +112,12 @@ if index(g:bundle_group, 'enhanced') >= 0
 
 	" 提供 gist 接口
 	Plug 'lambdalisue/vim-gista', { 'on': 'Gista' }
-	
+
 	" " ALT_+/- 用于按分隔符扩大缩小 v 选区
 	" map <m-=> <Plug>(expand_region_expand)
 	" map <m--> <Plug>(expand_region_shrink)
 endif
-	
+
 "----------------------------------------------------------------------
 " 自动生成 ctags/gtags，并提供自动索引功能
 " 不在 git/svn 内的项目，需要在项目根目录 touch 一个空的 .root 文件
@@ -164,7 +165,7 @@ if index(g:bundle_group, 'tags') >= 0
 
 	" 禁止 gutentags 自动链接 gtags 数据库
 	let g:gutentags_auto_add_gtags_cscope = 0
-	
+
 	" 如果使用 universal ctags 需要增加下面一行
 	let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 
@@ -179,7 +180,7 @@ endif
 " 文本对象：textobj 全家桶
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'textobj')
-	
+
 	" 基础插件：提供让用户方便的自定义文本对象的接口
 	Plug 'kana/vim-textobj-user'
 
@@ -335,7 +336,7 @@ if index(g:bundle_group, 'ale') >= 0
 		let g:ale_linters.c += ['clang']
 		let g:ale_linters.cpp += ['clang']
 	endif
-	
+
 	" Enable all of the linters you want for Go.
 	let g:ale_linters.go += ['gometalinter', 'gofmt']
 endif
@@ -366,16 +367,16 @@ if index(g:bundle_group, 'leaderf') >= 0
 
 		" " CTRL+n 打开最近使用的文件 MRU，进行模糊匹配
 		" noremap <c-n> :LeaderfMru<cr>
-        "
+		"
 		" " ALT+p 打开函数列表，按 i 进入模糊匹配，ESC 退出
 		" noremap <m-p> :LeaderfFunction!<cr>
-        "
+		"
 		" " ALT+SHIFT+p 打开 tag 列表，i 进入模糊匹配，ESC退出
 		" noremap <m-P> :LeaderfBufTag!<cr>
-        "
+		"
 		" " ALT+n 打开 buffer 列表进行模糊匹配
 		" noremap <m-n> :LeaderfBuffer<cr>
-        "
+		"
 		" " 全局 tags 模糊匹配
 		" noremap <m-m> :LeaderfTag<cr>
 
@@ -429,10 +430,10 @@ if index(g:bundle_group, 'leaderf') >= 0
 
 		" 模糊匹配忽略
 		let g:ctrlp_custom_ignore = {
-		  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-		  \ 'file': '\v\.(exe|so|dll|mp3|wav|sdf|suo|mht)$',
-		  \ 'link': 'some_bad_symbolic_links',
-		  \ }
+					\ 'dir':  '\v[\/]\.(git|hg|svn)$',
+					\ 'file': '\v\.(exe|so|dll|mp3|wav|sdf|suo|mht)$',
+					\ 'link': 'some_bad_symbolic_links',
+					\ }
 
 		" 项目标志
 		let g:ctrlp_root_markers = ['.project', '.root', '.svn', '.git']
@@ -452,10 +453,78 @@ if index(g:bundle_group, 'leaderf') >= 0
 	endif
 endif
 
+if index(g:bundle_group, 'language') >= 0
+	" kotlin plugin
+	Plug 'udalov/kotlin-vim'
+
+	" go plugin
+	Plug 'fatih/vim-go' , {'do':':GoInstallBinaries'}
+
+	" Plugin 'fatih/vim-go'
+	let g:go_fmt_command = "goimports"
+	let g:go_list_type = "quickfix"
+	let g:go_auto_sameids = 1
+
+	let g:go_highlight_types = 1
+	let g:go_highlight_fields = 1
+	let g:go_highlight_functions = 1
+	let g:go_highlight_methods = 1
+	let g:go_highlight_extra_types = 1
+	let g:go_highlight_generate_tags = 1
+
+	" Open :GoDeclsDir with ctrl-g
+	nmap <C-g> :GoDeclsDir<cr>
+	imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
+
+	augroup go
+		autocmd!
+		" Show by default 4 spaces for a tab
+		autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+		" :GoBuild and :GoTestCompile
+		autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+		" :GoTest
+		autocmd FileType go nmap <leader>t  <Plug>(go-test)
+		" :GoRun
+		autocmd FileType go nmap <leader>r  <Plug>(go-run)
+		" :GoDoc
+		autocmd FileType go nmap <Leader>d <Plug>(go-doc)
+		" :GoCoverageToggle
+		autocmd FileType go nmap <Leader>tc <Plug>(go-coverage-toggle)
+		" :GoInfo
+		autocmd FileType go nmap <Leader>i <Plug>(go-info)
+		" :GoImplements
+		autocmd FileType go nmap <Leader>im <Plug>(go-implements)
+		" :GoMetaLinter
+		autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+		" :GoDef but opens in a vertical split
+		autocmd FileType go nmap <Leader>v <Plug>(go-def)
+		" :GoDef but opens in a vertical split
+		autocmd FileType go nmap <Leader>vv <Plug>(go-def-vertical)
+		" :GoDef but opens in a horizontal split
+		autocmd FileType go nmap <Leader>vs <Plug>(go-def-split)
+		" :GoReferrers
+		autocmd FileType go nmap <Leader>re <Plug>(go-referrers)
+		" :GoAlternate  commands :A, :AV, :AS and :AT
+		autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+		autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+		autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+		autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+	augroup END
+
+	" build_go_files is a custom function that builds or compiles the test file.
+	" It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
+	function! s:build_go_files()
+		let l:file = expand('%')
+		if l:file =~# '^\f\+_test\.go$'
+			call go#test#Test(0, 1)
+		elseif l:file =~# '^\f\+\.go$'
+			call go#cmd#Build(0)
+		endif
+	endfunction
+endif
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'Valloric/YouCompleteMe' , {'do':'./install.py --all'}
-Plug 'fatih/vim-go' , {'do':':GoInstallBinaries'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'plasticboy/vim-markdown'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -550,67 +619,6 @@ let g:ycm_filetype_whitelist = {
 			\ }
 
 
-" Plugin 'fatih/vim-go'
-let g:go_fmt_command = "goimports"
-let g:go_list_type = "quickfix"
-let g:go_auto_sameids = 1
-
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_generate_tags = 1
-
-" Open :GoDeclsDir with ctrl-g
-nmap <C-g> :GoDeclsDir<cr>
-imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
-
-augroup go
-  autocmd!
-  " Show by default 4 spaces for a tab
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-  " :GoBuild and :GoTestCompile
-  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-  " :GoTest
-  autocmd FileType go nmap <leader>t  <Plug>(go-test)
-  " :GoRun
-  autocmd FileType go nmap <leader>r  <Plug>(go-run)
-  " :GoDoc
-  autocmd FileType go nmap <Leader>d <Plug>(go-doc)
-  " :GoCoverageToggle
-  autocmd FileType go nmap <Leader>tc <Plug>(go-coverage-toggle)
-  " :GoInfo
-  autocmd FileType go nmap <Leader>i <Plug>(go-info)
-  " :GoImplements
-  autocmd FileType go nmap <Leader>im <Plug>(go-implements)
-  " :GoMetaLinter
-  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
-  " :GoDef but opens in a vertical split
-  autocmd FileType go nmap <Leader>v <Plug>(go-def)
-  " :GoDef but opens in a vertical split
-  autocmd FileType go nmap <Leader>vv <Plug>(go-def-vertical)
-  " :GoDef but opens in a horizontal split
-  autocmd FileType go nmap <Leader>vs <Plug>(go-def-split)
-  " :GoReferrers
-  autocmd FileType go nmap <Leader>re <Plug>(go-referrers)
-  " :GoAlternate  commands :A, :AV, :AS and :AT
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-augroup END
-
-" build_go_files is a custom function that builds or compiles the test file.
-" It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
 
 " NERD Commenter Comment functions so powerful—no comment necessary.
 " Plugin 'scrooloose/nerdcommenter'
