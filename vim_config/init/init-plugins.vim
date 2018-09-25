@@ -444,6 +444,7 @@ if index(g:bundle_group, 'leaderf') >= 0
 		map <Leader>ft :LeaderfTag<CR>
 		map <Leader>fl :LeaderfLine<CR>
 		map <Leader>fc :LeaderfHistoryCmd<CR>
+		map <Leader>fp :LeaderfFile<CR>
 	else
 		" 不支持 python ，使用 CtrlP 代替
 		Plug 'ctrlpvim/ctrlp.vim'
