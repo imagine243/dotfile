@@ -427,7 +427,7 @@ if index(g:bundle_group, 'leaderf') >= 0
 		" 模糊匹配忽略扩展名
 		let g:Lf_WildIgnore = {
 					\ 'dir': ['.svn','.git','.hg'],
-					\ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+					\ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]', '*.meta', '*.*.meta', '*.unity', '*.unityproj', '*.mat', '*.fbx', '*.FBX', '*.tga', '*.cubemap', '*.prefab', '*.png', '*.jpg','*.gif']
 					\ }
 
 		" MRU 文件忽略扩展名
