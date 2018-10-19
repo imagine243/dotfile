@@ -1,13 +1,47 @@
-// 将设置放入此文件中以覆盖默认设置
 {
-    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.iconTheme": "vscode-icons",
     "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
         "suppressShowKeyBindingsNotice": true,
+        "suppressUpdateNotice": false,
         "suppressWelcomeNotice": true
     },
-      // Path to Python, you can use a custom version of Python by modifying this setting to include the full path.
-    "python.pythonPath": "/usr/local/bin/python3",
-    "git.autofetch": true,
+    "workbench.colorTheme": "Monokai",
+    "python.pythonPath": "C:\\Users\\chao\\AppData\\Local\\Programs\\Python\\Python36\\python.exe",
+    "gitlens.keymap": "alternate",
+    "gitlens.historyExplorer.enabled": true,
+    "sync.gist": "df213e3b87feb84045fc4ea6bd03e1e8",
+    "sync.quietSync": false,
+    "sync.removeExtensions": true,
+    "sync.syncExtensions": true,
+    "sync.autoDownload": true,
+    "sync.autoUpload": true,
+    "sync.forceDownload": false,
+
+    // Configure glob patterns for excluding files and folders.
+    "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/*.meta": true,
+    "**/*.*.meta": true,
+    "**/*.unity": true,
+    "**/*.unityproj": true,
+    "**/*.mat": true,
+    "**/*.fbx": true,
+    "**/*.FBX": true,
+    "**/*.tga": true,
+    "**/*.cubemap": true,
+    "**/*.prefab": true,
+    "**/Library": true,
+    "**/ProjectSettings": true,
+    "**/Temp": true
+    },
 
     "vim.enableNeovim": true,
     "vim.neovimPath": "/usr/local/bin/nvim",
@@ -16,31 +50,5 @@
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [
-        {
-            "before": ["j","j"],
-            "after": ["<Esc>"]
-        }
-    ],
-    "vim.otherModesKeyBindingsNonRecursive": [
-        {
-            "before": ["<leader>","d"],
-            "after": ["d", "d"]
-        },
-        {
-            "before":["<C-n>"],
-            "after":[],
-            "commands": [
-                {
-                    "command": ":nohl"
-                }
-            ]
-        }
-    ],
-    "vim.leader": "<space>",
-    "vim.handleKeys":{
-        "<C-a>": false,
-        "<C-f>": false
-    },
-    "gitlens.keymap": "alternate"
+    
 }

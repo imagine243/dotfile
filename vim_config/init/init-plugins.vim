@@ -105,7 +105,7 @@ if index(g:bundle_group, 'enhanced') >= 0
 	let g:ctrlsf_default_view_mode = 'compact'
 
 	" noremap <c-F> :CtrlSF<cr> :CtrlSFFocus<cr>
-	map <Leader>s  :CtrlSF
+	map <Leader>s  :CtrlSF<cr> :CtrlSFFocus<cr>
 	map <Leader>st :CtrlSFFocus<CR>
 	map <Leader>sc :CtrlSFClose<CR>
 	map <Leader>sw <Plug>CtrlSFCwordPath
