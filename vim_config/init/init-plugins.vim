@@ -551,7 +551,7 @@ if index(g:bundle_group, 'language') >= 0
 endif
 
 Plug 'scrooloose/nerdcommenter'
-Plug 'Valloric/YouCompleteMe' , {'do':'./install.py --all'}
+Plug 'Valloric/YouCompleteMe' , {'do':'python3 install.py --all'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'plasticboy/vim-markdown'
 Plug 'AndrewRadev/splitjoin.vim'
