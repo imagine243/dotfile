@@ -414,7 +414,7 @@ if index(g:bundle_group, 'leaderf') >= 0
 
 		" 如何识别项目目录，从当前文件目录向父目录递归知道碰到下面的文件/目录
 		let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
-		let g:Lf_WorkingDirectoryMode = 'Ac'
+		let g:Lf_WorkingDirectoryMode = ''
 		let g:Lf_WindowHeight = 0.30
 		let g:Lf_CacheDirectory = expand('~/.vim/cache')
 
