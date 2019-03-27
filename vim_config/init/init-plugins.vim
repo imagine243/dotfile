@@ -104,8 +104,14 @@ if index(g:bundle_group, 'enhanced') >= 0
 	let g:ctrlsf_search_mode = 'async'
 	let g:ctrlsf_default_view_mode = 'compact'
 
+	let g:ctrlsf_auto_focus = {
+    \ "at": "done",
+    \ "duration_less_than": 1000
+    \ }
+
 	" noremap <c-F> :CtrlSF<cr> :CtrlSFFocus<cr>
-	map <Leader>s  :CtrlSF<cr> :CtrlSFFocus<cr>
+	" map <Leader>s  :CtrlSF<cr> :CtrlSFFocus<cr>
+	map <Leader>s <Plug>CtrlSFPrompt 
 	map <Leader>st :CtrlSFFocus<CR>
 	map <Leader>sc :CtrlSFClose<CR>
 	map <Leader>sw <Plug>CtrlSFCwordPath
