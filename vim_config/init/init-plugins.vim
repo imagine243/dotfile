@@ -106,7 +106,6 @@ if index(g:bundle_group, 'enhanced') >= 0
 
 	let g:ctrlsf_auto_focus = {
     \ "at": "done",
-    \ "duration_less_than": 1000
     \ }
 
 	" noremap <c-F> :CtrlSF<cr> :CtrlSFFocus<cr>
