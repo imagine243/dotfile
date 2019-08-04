@@ -450,6 +450,9 @@ if index(g:bundle_group, 'leaderf') >= 0
 		map <Leader>fl :LeaderfLine<CR>
 		map <Leader>fc :LeaderfHistoryCmd<CR>
 		map <Leader>fp :LeaderfFile<CR>
+		map <Leader>fr :Leaderf rg -e
+		" search word under cursor, the pattern is treated as regex, and enter normal mode directly
+		noremap <Leader>fw :<C-U><C-R>=printf("Leaderf rg -e %s .", expand("<cword>"))<CR><CR>
 	else
 		" 不支持 python ，使用 CtrlP 代替
 		Plug 'ctrlpvim/ctrlp.vim'
