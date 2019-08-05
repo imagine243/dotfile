@@ -1,6 +1,7 @@
 
 if !exists('g:bundle_group')
-	let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
+	" let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
+	let g:bundle_group = ['basic', 'tags', 'filetypes', 'textobj']
 	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
 	let g:bundle_group += ['leaderf']
 	let g:bundle_group += ['grammer']
@@ -450,9 +451,11 @@ if index(g:bundle_group, 'leaderf') >= 0
 		map <Leader>fl :LeaderfLine<CR>
 		map <Leader>fc :LeaderfHistoryCmd<CR>
 		map <Leader>fp :LeaderfFile<CR>
-		map <Leader>fr :Leaderf rg -e
+		
+		map <Leader>s :Leaderf rg -e
+		map <Leader>sr :LeaderfRgRecall<CR>
 		" search word under cursor, the pattern is treated as regex, and enter normal mode directly
-		noremap <Leader>fw :<C-U><C-R>=printf("Leaderf rg -e %s .", expand("<cword>"))<CR><CR>
+		noremap <Leader>sw :<C-U><C-R>=printf("Leaderf rg -e %s .", expand("<cword>"))<CR><CR>
 	else
 		" 不支持 python ，使用 CtrlP 代替
 		Plug 'ctrlpvim/ctrlp.vim'
