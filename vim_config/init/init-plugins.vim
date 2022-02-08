@@ -1,11 +1,11 @@
 
 if !exists('g:bundle_group')
 	" let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
-	let g:bundle_group = ['basic', 'tags', 'filetypes', 'textobj']
-	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
+	let g:bundle_group = ['basic', 'filetypes', 'textobj']
+	let g:bundle_group += ['airline', 'nerdtree', 'ale', 'echodoc']
 	let g:bundle_group += ['leaderf']
 	let g:bundle_group += ['grammer']
-	let g:bundle_group += ['language']
+	" let g:bundle_group += ['language']
 endif
 
 " vim-plug https://github.com/junegunn/vim-plug
@@ -562,11 +562,11 @@ if index(g:bundle_group, 'language') >= 0
 endif
 
 Plug 'scrooloose/nerdcommenter'
-Plug 'Valloric/YouCompleteMe' , {'do':'python3 install.py --all'}
+" Plug 'Valloric/YouCompleteMe' , {'do':'python3 install.py --all'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'plasticboy/vim-markdown'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -577,17 +577,17 @@ call plug#end()
 " YouCompleteMe 默认设置：YCM 需要你另外手动编译安装
 "----------------------------------------------------------------------
 
-" 禁用预览功能：扰乱视听
-let g:ycm_add_preview_to_completeopt = 0
-
-" 禁用诊断功能：我们用前面更好用的 ALE 代替
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
-let g:ycm_key_invoke_completion = '<c-z>'
-set completeopt=menu,menuone
+" " 禁用预览功能：扰乱视听
+" " let g:ycm_add_preview_to_completeopt = 0
+" "
+" " 禁用诊断功能：我们用前面更好用的 ALE 代替
+" let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_server_log_level = 'info'
+" let g:ycm_min_num_identifier_candidate_chars = 2
+" let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" let g:ycm_complete_in_strings=1
+" let g:ycm_key_invoke_completion = '<c-z>'
+" set completeopt=menu,menuone
 
 " noremap <c-z> <NOP>
 
