@@ -6,7 +6,8 @@ local lsp_installer = require 'nvim-lsp-installer'
 -- { key: 语言 value: 配置文件 }
 local servers = {
     sumneko_lua = require "plugin.lsp.lua",
-    tsserver = require "plugin.lsp.tsserver"
+    tsserver = require "plugin.lsp.tsserver",
+    angularls = require "plugin.lsp.angularls"
 }
 
 for name, _ in pairs(servers) do

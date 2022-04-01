@@ -1,16 +1,14 @@
 -- 本地变量
 local map = vim.api.nvim_set_keymap
 local opt = {
-    noremap = true,
-    silent = true
+	noremap = true,
+	silent = true,
 }
 
 local map_cu = function(mode, keymap, cmd, opt)
-    local real_cmd = (":<C-u>%s<CR>"):format(cmd)
-    map(mode, keymap, real_cmd, opt)
+	local real_cmd = (":<C-u>%s<CR>"):format(cmd)
+	map(mode, keymap, real_cmd, opt)
 end
-
-
 
 map("n", "<C-j>", "4j", opt)
 map("n", "<C-k>", "4k", opt)
@@ -26,7 +24,7 @@ map("v", "<", "<gv", opt)
 map("v", ">", ">gv", opt)
 
 -- // 搜索选中的文本
-map("v", "//", "y/<C-R>\"<CR>", opt)
+map("v", "//", 'y/<C-R>"<CR>', opt)
 
 -- Search mappings: These will make it so that going to the next one in a
 -- search will center on the line it's found in.
@@ -49,7 +47,6 @@ map("n", "s,", ":vertical resize -20<CR>", opt)
 map("n", "s=", "<C-w>=", opt)
 map("n", "sj", ":resize +10<CR>", opt)
 map("n", "sk", ":resize -10<CR>", opt)
-
 
 -- alt + hjkl  窗口之间跳转
 map("n", "<A-h>", "<C-w>h", opt)
@@ -75,7 +72,7 @@ map_cu("n", "<leader>w", ":w <CR>", opt)
 -- nvimtree
 map_cu("n", "<leader>fe", "NvimTreeToggle", opt)
 
--- telescope 
+-- telescope
 map_cu("n", "<leader>ff", "Telescope find_files", opt)
 map_cu("n", "<leader>ss", "Telescope grep_string", opt)
 map_cu("n", "<leader>s", "Telescope live_grep", opt)
@@ -83,3 +80,7 @@ map_cu("n", "<leader>sj", "Telescope jumplist", opt)
 map_cu("n", "<leader>sb", "Telescope buffers", opt)
 map_cu("n", "<leader>sk", "Telescope keymaps", opt)
 
+map_cu("n", "<leader>gr", "Telescope lsp_references", opt)
+map_cu("n", "<leader>gf", "Telescope lsp_document_symbols", opt)
+map_cu("n", "<leader>gff", "Telescope lsp_workspace_symbols", opt)
+map_cu("n", "<leader>gd", "Telescope lsp_definitions", opt)
