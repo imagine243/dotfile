@@ -75,3 +75,4 @@ map_cu("n", "<leader>q", "quit!", opt)
 -- telescope find_files
 map_cu("n", "<leader>ff", "Telescope find_files", opt)
 map_cu("n", "<leader>ft", "NvimTreeToggle", opt)
+map_cu("n", "<leader>ft", "NvimTreeToggle", opt)
