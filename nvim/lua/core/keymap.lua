@@ -69,10 +69,17 @@ map("t", "<A-l>", "<C-\\><C-N><C-w>l", opt)
 
 -- 退出当前
 map_cu("n", "<leader>q", "quit!", opt)
+map_cu("n", "<leader>w", ":w <CR>", opt)
 
---------------------------------------
 -- 临时使用插件的快捷键
--- telescope find_files
+-- nvimtree
+map_cu("n", "<leader>fe", "NvimTreeToggle", opt)
+
+-- telescope 
 map_cu("n", "<leader>ff", "Telescope find_files", opt)
-map_cu("n", "<leader>ft", "NvimTreeToggle", opt)
-map_cu("n", "<leader>ft", "NvimTreeToggle", opt)
+map_cu("n", "<leader>ss", "Telescope grep_string", opt)
+map_cu("n", "<leader>s", "Telescope live_grep", opt)
+map_cu("n", "<leader>sj", "Telescope jumplist", opt)
+map_cu("n", "<leader>sb", "Telescope buffers", opt)
+map_cu("n", "<leader>sk", "Telescope keymaps", opt)
+
