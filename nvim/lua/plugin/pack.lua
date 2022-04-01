@@ -47,4 +47,8 @@ return require('packer').startup(function()
     use "terrortylor/nvim-comment"
 
     use 'windwp/nvim-autopairs'
+
+    use {'nvim-treesitter/nvim-treesitter'}
+
+    use {'jose-elias-alvarez/null-ls.nvim'}
 end)

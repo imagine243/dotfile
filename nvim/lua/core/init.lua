@@ -48,6 +48,7 @@ local load_core = function()
 
   require('core.basic')
   require('core.keymap')
+  require('core.autocommands')
 end
 
 load_core()

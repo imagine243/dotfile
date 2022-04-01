@@ -5,6 +5,8 @@ require 'plugin.nvim_comment'
 require 'plugin.nvim_autopairs'
 require 'plugin.lua_snip'
 require 'plugin.telescope'
+require 'plugin.treesitter'
+require 'plugin.lsp.null_ls'
 
 local load_plugin = function()
     vim.cmd [[colorscheme edge]]
