@@ -7,6 +7,7 @@ require 'plugin.lua_snip'
 require 'plugin.telescope'
 require 'plugin.treesitter'
 require 'plugin.lsp.null_ls'
+require 'plugin.lua_line'
 
 local load_plugin = function()
     vim.cmd [[colorscheme edge]]
