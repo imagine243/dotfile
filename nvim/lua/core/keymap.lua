@@ -64,6 +64,11 @@ map("t", "<A-j>", "<C-\\><C-N><C-w>j", opt)
 map("t", "<A-k>", "<C-\\><C-N><C-w>k", opt)
 map("t", "<A-l>", "<C-\\><C-N><C-w>l", opt)
 
+-- terminal
+map("t", "<C-t>", "<C-\\><C-N>:ToggleTerm<CR>", opt)
+map("n", "<C-t>", ":ToggleTerm<CR>", opt)
+map("i", "<C-t>", ":ToggleTerm<CR>", opt)
+
 -- 退出当前
 map_cu("n", "<leader>q", "quit!", opt)
 map_cu("n", "<leader>w", ":w <CR>", opt)

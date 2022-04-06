@@ -82,4 +82,5 @@ return require("packer").startup(function()
 			require("gitsigns").setup()
 		end,
 	})
+	use({ "akinsho/toggleterm.nvim" })
 end)
