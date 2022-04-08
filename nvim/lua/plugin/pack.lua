@@ -83,4 +83,6 @@ return require("packer").startup(function()
 		end,
 	})
 	use({ "akinsho/toggleterm.nvim" })
+
+	use("MunifTanjim/prettier.nvim")
 end)
