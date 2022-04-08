@@ -9,7 +9,7 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		-- formatting.prettierd,
-		-- formatting.prettier.with({ filetypes = { "markdown" } }),
+		formatting.prettier.with({ filetypes = { "markdown" } }),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
 		-- diagnostics.flake8
