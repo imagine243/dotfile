@@ -80,6 +80,7 @@ map_cu("n", "<leader>fe", "NvimTreeToggle", opt)
 -- telescope
 map_cu("n", "<leader>ff", "Telescope find_files theme=ivy", opt)
 map_cu("n", "<leader>fr", "Telescope oldfiles theme=ivy", opt)
+map_cu("n", "<leader>fp", "Telescope projects theme=ivy", opt)
 map_cu("n", "<leader>ss", "Telescope grep_string theme=ivy", opt)
 map_cu("n", "<leader>s", "Telescope live_grep theme=ivy", opt)
 map_cu("n", "<leader>sj", "Telescope jumplist theme=ivy", opt)
