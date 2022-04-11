@@ -9,6 +9,7 @@ require("plugin.treesitter")
 require("plugin.lsp.null_ls")
 require("plugin.lua_line")
 require("plugin.lsp.prettier")
+require("plugin.project")
 
 local load_plugin = function()
 	vim.cmd([[colorscheme edge]])
