@@ -71,7 +71,8 @@ map("i", "<C-t>", ":ToggleTerm<CR>", opt)
 
 -- 退出当前
 map_cu("n", "<leader>q", "quit!", opt)
-map_cu("n", "<leader>w", ":w <CR>", opt)
+map_cu("n", "<leader>w", ":w", opt)
+map_cu("i", "<C-s>", "<ESC>:w", opt)
 
 -- 临时使用插件的快捷键
 -- nvimtree
