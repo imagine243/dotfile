@@ -86,4 +86,10 @@ return require("packer").startup(function()
 
 	use("MunifTanjim/prettier.nvim")
 	use("ahmedkhalf/project.nvim")
+	use({
+		"Mofiqul/trld.nvim",
+		config = function()
+			require("trld").setup()
+		end,
+	})
 end)
