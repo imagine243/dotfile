@@ -45,6 +45,8 @@ return require("packer").startup(function()
 	use("saadparwaiz1/cmp_luasnip")
 	use("rafamadriz/friendly-snippets")
 
+	use("ray-x/lsp_signature.nvim")
+
 	-- lspkind
 	use("onsails/lspkind-nvim")
 	-- use 'github/copilot.vim'
@@ -82,7 +84,8 @@ return require("packer").startup(function()
 			require("gitsigns").setup()
 		end,
 	})
-	use({ "akinsho/toggleterm.nvim" })
+
+	use("akinsho/toggleterm.nvim")
 
 	use("MunifTanjim/prettier.nvim")
 	use("ahmedkhalf/project.nvim")

@@ -63,6 +63,7 @@ lsp_installer.on_server_ready(function(server)
 			if client.name == "tsserver" then
 				client.resolved_capabilities.document_formatting = false
 			end
+			require("lsp_signature").on_attach()
 		end
 		opts.flags = {
 			debounce_text_changes = 150,
