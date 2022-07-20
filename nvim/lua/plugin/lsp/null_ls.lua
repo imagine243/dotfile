@@ -10,8 +10,14 @@ null_ls.setup({
 	sources = {
 		-- formatting.prettierd,
 		-- formatting.prettier.with({ filetypes = { "markdown" } }),
+		formatting.prettier,
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
 		-- diagnostics.flake8
 	},
+	on_attach = function(client, bufnr)
+		-- format on save
+		-- vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+	end,
 })
