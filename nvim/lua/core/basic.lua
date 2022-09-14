@@ -82,6 +82,7 @@ local function load_basic()
 	vim.o.pumheight = 10
 	-- always show tabline
 	vim.o.showtabline = 2
+	vim.opt.wildignore:append({ "*/node_modules/*" })
 
 	if global.is_mac then
 		vim.g.clipboard = {
