@@ -67,6 +67,8 @@ return require("packer").startup(function(use)
 	use("onsails/lspkind-nvim")
 	-- use 'github/copilot.vim'
 
+	use({"glepnir/lspsaga.nvim", branch = "main"})
+
 	-- comment
 	use("terrortylor/nvim-comment")
 
