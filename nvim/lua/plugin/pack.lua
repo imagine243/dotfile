@@ -21,16 +21,9 @@ return require("packer").startup(function(use)
 			vim.g.edge_better_performance = 1
 		end,
 	})
-
-	use({
-		"nvim-telescope/telescope-fzf-native.nvim",
-		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-	})
-
-	use({
-		"nvim-telescope/telescope.nvim",
-		requires = { { "nvim-lua/plenary.nvim" } },
-	})
+	use("nvim-lua/plenary.nvim") -- common utilities
+	use("nvim-telescope/telescope.nvim") -- search everything
+	use("nvim-telescope/telescope-file-browser.nvim")
 
 	use({
 		"kyazdani42/nvim-tree.lua",
