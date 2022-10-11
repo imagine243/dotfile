@@ -28,7 +28,6 @@ local lspkeymap = function(mapbuf)
 	mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
 	-- code action
 	mapbuf("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
-
 	-- go xx
 	mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
 	mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
@@ -61,7 +60,11 @@ lsp_installer.on_server_ready(function(server)
 			lspkeymap(buf_set_keymap)
 
 			if client.name == "tsserver" then
-				client.resolved_capabilities.document_formatting = false
+				client.server_capabilities.document_formatting = false
+			end
+
+			if client.name == "sumneko_lua" then
+				client.server_capabilities.document_formatting = false
 			end
 			require("lsp_signature").on_attach()
 		end

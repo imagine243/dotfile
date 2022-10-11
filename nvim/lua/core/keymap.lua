@@ -71,7 +71,7 @@ map("i", "<C-t>", ":ToggleTerm<CR>", opt)
 
 -- 退出当前
 map_cu("n", "<leader>q", "quit!", opt)
-map_cu("n", "<leader>w", ":w", opt)
+map_cu("n", "<leader>w", ":w!", opt)
 -- map_cu("i", "<C-s>", "<ESC>:w", opt)
 
 -- 临时使用插件的快捷键
@@ -82,6 +82,7 @@ map_cu("n", "<leader>fe", "NvimTreeToggle", opt)
 map_cu("n", "<leader>ff", "Telescope find_files theme=ivy", opt)
 map_cu("n", "<leader>fr", "Telescope oldfiles theme=ivy", opt)
 map_cu("n", "<leader>fp", "Telescope projects theme=ivy", opt)
+map_cu("n", "<leader>fb", "Telescope file_browser theme=ivy", opt)
 map_cu("n", "<leader>ss", "Telescope grep_string theme=ivy", opt)
 map_cu("n", "<leader>s", "Telescope live_grep theme=ivy", opt)
 map_cu("n", "<leader>sj", "Telescope jumplist theme=ivy", opt)
@@ -92,3 +93,4 @@ map_cu("n", "<leader>gr", "Telescope lsp_references theme=ivy", opt)
 map_cu("n", "<leader>gf", "Telescope lsp_document_symbols theme=ivy", opt)
 map_cu("n", "<leader>gff", "Telescope lsp_workspace_symbols theme=ivy", opt)
 map_cu("n", "<leader>gd", "Telescope lsp_definitions theme=ivy", opt)
+map_cu("n", ";;", "Telescope resume theme=ivy", opt)

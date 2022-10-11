@@ -22,26 +22,17 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use("nvim-lua/plenary.nvim") -- common utilities
+
 	use("nvim-telescope/telescope.nvim") -- search everything
 	use("nvim-telescope/telescope-file-browser.nvim")
+	use("ahmedkhalf/project.nvim")
 
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = "kyazdani42/nvim-web-devicons",
-		config = function()
-			require("nvim-tree").setup({
-				respect_buf_cwd = true,
-				update_cwd = true,
-				update_focused_file = {
-					enable = true,
-					update_cwd = true,
-				},
-			})
-		end,
-	})
+	use("kyazdani42/nvim-tree.lua") -- file explorer
+	-- use({ "williamboman/nvim-lsp-installer" })
+	use({ "williamboman/mason.nvim" })
+	use({ "williamboman/mason-lspconfig.nvim" })
 
-	use({ "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer" })
-	-- nvim-cmp
+	use("neovim/nvim-lspconfig") -- nvim-cmp
 	use("hrsh7th/cmp-nvim-lsp") -- { name = nvim_lsp }
 	use("hrsh7th/cmp-buffer") -- { name = 'buffer' },
 	use("hrsh7th/cmp-path") -- { name = 'path' }
@@ -105,7 +96,6 @@ return require("packer").startup(function(use)
 	})
 
 	use("MunifTanjim/prettier.nvim")
-	use("ahmedkhalf/project.nvim")
 	use({
 		"Mofiqul/trld.nvim",
 		config = function()
