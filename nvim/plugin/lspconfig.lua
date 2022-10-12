@@ -3,7 +3,6 @@ local status, nvim_lsp = pcall(require, "lspconfig")
 if not status then
 	return
 end
-print("lspconfig load")
 
 local protocol = require("vim.lsp.protocol")
 
