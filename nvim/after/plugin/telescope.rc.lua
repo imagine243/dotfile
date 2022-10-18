@@ -81,3 +81,58 @@ project.setup({
 })
 
 telescope.load_extension("projects")
+
+--- theme
+local telescope_themes = require("telescope.themes")
+local dropdown = telescope_themes.get_dropdown({
+	winblend = 20,
+	-- previewer = false,
+	layout_config = {
+		width = function(_, max_columns, _)
+			return math.min(max_columns, 120)
+		end,
+
+		height = function(_, _, max_lines)
+			return math.min(max_lines, 40)
+		end,
+	},
+})
+
+local dropdown_nopreview = vim.tbl_deep_extend("force", dropdown, { previewer = false })
+
+local ivy_theme = telescope_themes.get_ivy({
+	winblend = 20,
+})
+
+local ivy_nopreview = vim.tbl_deep_extend("force", ivy_theme, { previewer = false })
+
+local cursor_theme = telescope_themes.get_cursor({
+	winblend = 20,
+	layout_config = {
+		width = 100,
+		height = 15,
+	},
+})
+
+local cursor_nopreview = vim.tbl_deep_extend("force", cursor_theme, { previewer = false })
+
+local function setNormalKeymap(key, func, theme)
+	vim.keymap.set("n", key, function()
+		func(theme)
+	end)
+end
+
+setNormalKeymap(";;", buildin.resume)
+setNormalKeymap("<leader>ff", buildin.find_files, dropdown_nopreview)
+setNormalKeymap("<leader>fp", telescope.extensions.projects.projects, ivy_nopreview)
+setNormalKeymap("<leader>fl", buildin.current_buffer_fuzzy_find, ivy_nopreview)
+setNormalKeymap("<leader>fb", buildin.buffers, dropdown_nopreview)
+
+setNormalKeymap("<leader>s", buildin.live_grep, ivy_theme)
+setNormalKeymap("<leader>ss", buildin.grep_string, ivy_theme)
+setNormalKeymap("<leader>sj", buildin.jumplist, ivy_theme)
+setNormalKeymap("<leader>sk", buildin.keymaps, ivy_theme)
+
+-- telescope and lsp
+setNormalKeymap("gr", buildin.lsp_references, cursor_theme)
+setNormalKeymap("<leader>fs", buildin.lsp_document_symbols, ivy_theme)
