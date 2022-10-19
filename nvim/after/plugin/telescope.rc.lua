@@ -10,7 +10,7 @@ local fb_actions = telescope.extensions.file_browser.actions
 
 telescope.setup({
 	defaults = {
-		file_ignore_patterns = { "node_modules", ".git", "dist" },
+		file_ignore_patterns = { "node_modules" },
 		mappings = {
 			n = {
 				["q"] = actions.close,
@@ -43,12 +43,6 @@ telescope.load_extension("file_browser")
 
 local project = require("project_nvim")
 project.setup({
-	---@usage set to false to disable project.nvim.
-	--- This is on by default since it's currently the expected behavior.
-	active = true,
-
-	on_config_done = nil,
-
 	---@usage set to true to disable setting the current-woriking directory
 	--- Manual mode doesn't automatically change your root directory, so you have
 	--- the option to manually do so using `:ProjectRoot` command.
@@ -70,7 +64,7 @@ project.setup({
 
 	---@usage When set to false, you will get a message when project.nvim changes your directory.
 	-- When set to false, you will get a message when project.nvim changes your directory.
-	silent_chdir = true,
+	silent_chdir = false,
 
 	---@usage list of lsp client names to ignore when using **lsp** detection. eg: { "efm", ... }
 	ignore_lsp = {},
