@@ -28,7 +28,6 @@ return require("packer").startup(function(use)
 	use("ahmedkhalf/project.nvim")
 
 	use("kyazdani42/nvim-tree.lua") -- file explorer
-	-- use({ "williamboman/nvim-lsp-installer" })
 	use({ "williamboman/mason.nvim" })
 	use({ "williamboman/mason-lspconfig.nvim" })
 
@@ -47,14 +46,11 @@ return require("packer").startup(function(use)
 
 	use("ray-x/lsp_signature.nvim")
 
-	-- lspkind
-	use("onsails/lspkind-nvim")
-	-- use 'github/copilot.vim'
+	use("onsails/lspkind-nvim") -- lspkind
 
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 
-	-- comment
-	use("terrortylor/nvim-comment")
+	use("terrortylor/nvim-comment") -- comment
 
 	use("windwp/nvim-autopairs")
 
