@@ -126,6 +126,7 @@ setNormalKeymap("<leader>s", buildin.live_grep, ivy_theme)
 setNormalKeymap("<leader>ss", buildin.grep_string, ivy_theme)
 setNormalKeymap("<leader>sj", buildin.jumplist, ivy_theme)
 setNormalKeymap("<leader>sk", buildin.keymaps, ivy_theme)
+setNormalKeymap("<leader>sb", telescope.extensions.file_browser.file_browser, ivy_nopreview)
 
 -- telescope and lsp
 setNormalKeymap("gr", buildin.lsp_references, cursor_theme)
