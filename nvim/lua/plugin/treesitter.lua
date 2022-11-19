@@ -12,6 +12,9 @@ configs.setup({
 		"html",
 		"yaml",
 		"json",
+		"go",
+		"gomod",
+		"gowork",
 	}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 	ignore_install = { "" }, -- List of parsers to ignore installing
 	autopairs = {

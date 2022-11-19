@@ -85,3 +85,5 @@ nvim_lsp.tsserver.setup({
 	-- cmd = { "typescript-language-server", "--stdio" },
 	-- capabilities = capabilities,
 })
+
+nvim_lsp.gopls.setup({})
