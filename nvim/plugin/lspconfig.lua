@@ -1,4 +1,7 @@
 vim.lsp.set_log_level("debug")
+
+require("neodev").setup({})
+
 local status, nvim_lsp = pcall(require, "lspconfig")
 if not status then
 	return
@@ -59,10 +62,11 @@ local on_attach = function(client, bufnr)
 end
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 nvim_lsp.sumneko_lua.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -81,9 +85,15 @@ nvim_lsp.sumneko_lua.setup({
 
 nvim_lsp.tsserver.setup({
 	on_attach = on_attach,
-	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-	-- cmd = { "typescript-language-server", "--stdio" },
-	-- capabilities = capabilities,
+	capabilities = capabilities,
 })
 
-nvim_lsp.gopls.setup({})
+nvim_lsp.gopls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+nvim_lsp.html.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})

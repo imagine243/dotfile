@@ -100,4 +100,6 @@ return require("packer").startup(function(use)
 	})
 
 	use("github/copilot.vim") -- github copilot
+
+	use("folke/neodev.nvim") -- neovim help docs api
 end)

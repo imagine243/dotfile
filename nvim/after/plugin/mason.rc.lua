@@ -7,6 +7,8 @@ local status2, mason_lspconfig = pcall(require, "mason-lspconfig")
 
 mason.setup({})
 
+mason_lspconfig.setup({})
+
 mason_lspconfig.setup({
-	ensure_installed = { "sumneko_lua" },
+	automatic_installation = true,
 })
