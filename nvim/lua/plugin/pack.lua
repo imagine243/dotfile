@@ -28,10 +28,12 @@ return require("packer").startup(function(use)
 	use("ahmedkhalf/project.nvim")
 
 	use("kyazdani42/nvim-tree.lua") -- file explorer
+
 	use({ "williamboman/mason.nvim" })
 	use({ "williamboman/mason-lspconfig.nvim" })
-
+	use("folke/neodev.nvim") -- neovim help docs api
 	use("neovim/nvim-lspconfig") -- nvim-cmp
+
 	use("hrsh7th/cmp-nvim-lsp") -- { name = nvim_lsp }
 	use("hrsh7th/cmp-buffer") -- { name = 'buffer' },
 	use("hrsh7th/cmp-path") -- { name = 'path' }
@@ -101,5 +103,5 @@ return require("packer").startup(function(use)
 
 	use("github/copilot.vim") -- github copilot
 
-	use("folke/neodev.nvim") -- neovim help docs api
+	use("lukas-reineke/indent-blankline.nvim")
 end)
