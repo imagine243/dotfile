@@ -101,7 +101,5 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("github/copilot.vim") -- github copilot
-
 	use("lukas-reineke/indent-blankline.nvim")
 end)
