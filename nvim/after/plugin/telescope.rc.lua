@@ -129,5 +129,5 @@ setNormalKeymap("<leader>sk", buildin.keymaps, ivy_theme)
 setNormalKeymap("<leader>sb", telescope.extensions.file_browser.file_browser, ivy_nopreview)
 
 -- telescope and lsp
-setNormalKeymap("gr", buildin.lsp_references, cursor_theme)
+setNormalKeymap("gr", buildin.lsp_references, ivy_theme)
 setNormalKeymap("<leader>fs", buildin.lsp_document_symbols, ivy_theme)

@@ -5,7 +5,7 @@ require("plugin.nvim_autopairs")
 require("plugin.lua_snip")
 require("plugin.treesitter")
 require("plugin.lua_line")
-require("plugin.lsp.prettier")
+-- require("plugin.lsp.prettier")
 
 local load_plugin = function()
 	vim.cmd([[colorscheme edge]])
