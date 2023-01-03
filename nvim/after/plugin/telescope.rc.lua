@@ -10,7 +10,7 @@ local fb_actions = telescope.extensions.file_browser.actions
 
 telescope.setup({
 	defaults = {
-		file_ignore_patterns = { "node_modules" },
+		file_ignore_patterns = { "node_modules", "dist" },
 		mappings = {
 			n = {
 				["q"] = actions.close,
