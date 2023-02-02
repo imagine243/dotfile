@@ -23,6 +23,8 @@ return require("packer").startup(function(use)
 	})
 	use("nvim-lua/plenary.nvim") -- common utilities
 
+	use("kyazdani42/nvim-web-devicons")
+
 	use("nvim-telescope/telescope.nvim") -- search everything
 	use("nvim-telescope/telescope-file-browser.nvim")
 	use("ahmedkhalf/project.nvim")
