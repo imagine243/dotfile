@@ -64,7 +64,7 @@ end
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-nvim_lsp.sumneko_lua.setup({
+nvim_lsp.lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
@@ -77,7 +77,9 @@ nvim_lsp.sumneko_lua.setup({
 			workspace = {
 				-- Make the server aware of Neovim runtime files
 				library = vim.api.nvim_get_runtime_file("", true),
-				checkThirdParty = false,
+			},
+			runtime = {
+				version = "LuaJIT",
 			},
 		},
 	},
