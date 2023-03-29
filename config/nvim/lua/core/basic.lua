@@ -84,6 +84,12 @@ local function load_basic()
 	vim.o.showtabline = 2
 	vim.opt.wildignore:append({ "*/node_modules/*", "*/dist/*" })
 
+	vim.opt.foldmethod = "indent"
+	vim.opt.foldenable = false
+	vim.opt.foldlevel = 99
+
+	vim.lsp.set_log_level("off")
+
 	if global.is_mac then
 		vim.g.clipboard = {
 			name = "macOS-clipboard",
