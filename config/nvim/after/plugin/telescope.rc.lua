@@ -130,4 +130,10 @@ setNormalKeymap("<leader>sb", telescope.extensions.file_browser.file_browser, iv
 
 -- telescope and lsp
 setNormalKeymap("gr", buildin.lsp_references, ivy_theme)
-setNormalKeymap("<leader>fs", buildin.lsp_document_symbols, ivy_theme)
+
+-- symbols = "method" 表示只读出方法。
+setNormalKeymap(
+	"<leader>bf",
+	buildin.lsp_document_symbols,
+	vim.tbl_deep_extend("force", ivy_theme, { symbols = { "method", "function" } })
+)
