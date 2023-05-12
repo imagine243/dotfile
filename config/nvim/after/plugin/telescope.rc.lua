@@ -117,7 +117,7 @@ local function setNormalKeymap(key, func, theme)
 end
 
 setNormalKeymap(";;", buildin.resume)
-setNormalKeymap("<leader>ff", buildin.find_files, dropdown_nopreview)
+setNormalKeymap("<leader>ff", buildin.find_files, dropdown)
 setNormalKeymap("<leader>fp", telescope.extensions.projects.projects, ivy_nopreview)
 setNormalKeymap("<leader>fl", buildin.current_buffer_fuzzy_find, ivy_nopreview)
 setNormalKeymap("<leader>fb", buildin.buffers, dropdown_nopreview)
