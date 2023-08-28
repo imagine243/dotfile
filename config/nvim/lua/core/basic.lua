@@ -88,7 +88,7 @@ local function load_basic()
 	vim.opt.foldenable = true
 	vim.opt.foldlevel = 99
 
-	vim.lsp.set_log_level("off")
+	vim.lsp.set_log_level("ERROR")
 
 	if global.is_mac then
 		vim.g.clipboard = {
